@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\GoogleController;
 
+Route::get('/', function () {
+    return auth()->check() ? redirect('/dashboard') : redirect('/login');
+});
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', Login::class)->name('login');
 
