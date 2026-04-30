@@ -1,0 +1,29 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Document Shape -->
+  <path d="M40 40C40 34.4772 44.4772 30 50 30H110L140 60V140C140 145.523 135.523 150 130 150H50C44.4772 150 40 145.523 40 140V40Z" fill="url(#paint0_linear)" />
+  <path d="M110 30V50C110 55.5228 114.477 60 120 60H140L110 30Z" fill="#81E6D9" />
+  
+  <!-- Lines on document -->
+  <rect x="60" y="70" width="60" height="8" rx="4" fill="white" fill-opacity="0.6" />
+  <rect x="60" y="90" width="60" height="8" rx="4" fill="white" fill-opacity="0.6" />
+  <rect x="60" y="110" width="40" height="8" rx="4" fill="white" fill-opacity="0.6" />
+
+  <!-- Paper Plane -->
+  <path d="M150 70L80 100L105 115L150 70Z" fill="#3B82F6" />
+  <path d="M150 70L105 115L115 135L150 70Z" fill="#2563EB" />
+  
+  <!-- Curved Arrow -->
+  <path d="M40 160C40 160 80 180 140 150C160 140 170 120 175 100" stroke="url(#paint1_linear)" stroke-width="12" stroke-linecap="round" />
+  <path d="M165 110L175 95L185 110" stroke="url(#paint1_linear)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+
+  <defs>
+    <linearGradient id="paint0_linear" x1="40" y1="30" x2="140" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6" />
+      <stop offset="1" stop-color="#06B6D4" />
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="40" y1="160" x2="175" y2="95" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06B6D4" />
+      <stop offset="1" stop-color="#10B981" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Cv;
+use App\Models\CoverLetter;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
+class DocumentStorageService
+{
+    public static function saveCvPdf(Cv $cv)
+    {
+        try {
+            \Illuminate\Support\Facades\Log::info('Saving CV PDF for user ' . $cv->user_id);
+            $pdf = Pdf::loadView('pdf.cv-template', ['cv' => $cv]);
+            $filename = 'CV_' . str_replace(' ', '_', $cv->full_name) . '_' . $cv->id . '.pdf';
+            $path = 'public/users/' . $cv->user_id . '/cvs/' . $filename;
+            
+            Storage::put($path, $pdf->output());
+            \Illuminate\Support\Facades\Log::info('CV PDF saved to: ' . $path);
+            
+            return $path;
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Error saving CV PDF: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    public static function saveCoverLetterPdf(CoverLetter $cl)
+    {
+        try {
+            \Illuminate\Support\Facades\Log::info('Saving Cover Letter PDF for user ' . $cl->user_id);
+            $processedBody = $cl->getProcessedContent();
+            $pdf = Pdf::loadView('pdf.cover-letter-template', [
+                'coverLetter' => $cl,
+                'body' => $processedBody
+            ]);
+            
+            $filename = 'Cover_Letter_' . str_replace(' ', '_', $cl->company_name) . '_' . $cl->id . '.pdf';
+            $path = 'public/users/' . $cl->user_id . '/cover_letters/' . $filename;
+            
+            Storage::put($path, $pdf->output());
+            \Illuminate\Support\Facades\Log::info('Cover Letter PDF saved to: ' . $path);
+            
+            return $path;
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Error saving Cover Letter PDF: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+}

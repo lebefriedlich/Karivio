@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Livewire\Cv;
+
+use App\Models\Cv;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+#[Layout('components.layouts.app')]
+#[Title('Daftar CV')]
+class CvList extends Component
+{
+    public $cvs = [];
+
+    protected $listeners = ['doDeleteCv' => 'deleteCv'];
+
+    public function mount()
+    {
+        $this->loadCvs();
+    }
+
+    public function loadCvs()
+    {
+        $this->cvs = Cv::where('user_id', auth()->id())->latest()->get();
+    }
+
+    public function confirmDelete($id)
+    {
+        $cv = Cv::find($id);
+        if ($cv && $cv->user_id === auth()->id()) {
+            $this->dispatch('confirm', [
+                'onConfirm' => 'doDeleteCv',
+                'id' => $id,
+                'title' => 'Hapus CV?',
+                'message' => 'CV ' . $cv->full_name . ' akan dihapus permanen.'
+            ]);
+        }
+    }
+
+    public function deleteCv($cvId)
+    {
+        $cv = Cv::find($cvId);
+        if ($cv && $cv->user_id === auth()->id()) {
+            $cv->delete();
+            $this->loadCvs();
+            $this->dispatch('toast', [
+                'type' => 'success',
+                'title' => 'Dihapus!',
+                'message' => 'CV berhasil dihapus secara permanen.'
+            ]);
+        }
+    }
+
+    public function render()
+    {
+        return view('livewire.cv.cv-list');
+    }
+}
