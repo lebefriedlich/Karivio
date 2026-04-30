@@ -37,9 +37,9 @@ class GoogleController extends Controller
             'avatar' => $user->avatar,
             'google_token' => $user->token,
             'google_refresh_token' => $user->refreshToken,
-            'google_token_expires_at' => is_numeric($user->expiresIn) 
-                ? now()->addSeconds((int) $user->expiresIn) 
-                : now()->addHour(),
+            'google_token_expires_at' => is_numeric($user->expiresIn)
+                ? now()->addSeconds((int) $user->expiresIn)->format('Y-m-d H:i:s')
+                : now()->addHour()->format('Y-m-d H:i:s'),
         ];
 
         $existingUser = User::where('google_id', $user->id)
