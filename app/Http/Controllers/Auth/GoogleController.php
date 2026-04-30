@@ -23,7 +23,7 @@ class GoogleController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
             \Log::info('Google Login Attempt', ['email' => $user->email]);
         } catch (Exception $e) {
             \Log::error('Google Login Error', ['message' => $e->getMessage()]);
@@ -37,7 +37,9 @@ class GoogleController extends Controller
             'avatar' => $user->avatar,
             'google_token' => $user->token,
             'google_refresh_token' => $user->refreshToken,
-            'google_token_expires_at' => now()->addSeconds($user->expiresIn),
+            'google_token_expires_at' => is_numeric($user->expiresIn) 
+                ? now()->addSeconds((int) $user->expiresIn) 
+                : now()->addHour(),
         ];
 
         $existingUser = User::where('google_id', $user->id)

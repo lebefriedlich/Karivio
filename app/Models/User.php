@@ -87,7 +87,9 @@ class User extends Authenticatable
 
         $this->update([
             'google_token' => $response['access_token'],
-            'google_token_expires_at' => now()->addSeconds($response['expires_in']),
+            'google_token_expires_at' => is_numeric($response['expires_in'] ?? null) 
+                ? now()->addSeconds((int) $response['expires_in']) 
+                : now()->addHour(),
         ]);
 
         return $response['access_token'];
