@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\CleansBinaryDates;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
@@ -31,7 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[WithoutIncrementing]
 class Cv extends Model
 {
-    use HasUuids;
+    use HasUuids, CleansBinaryDates;
 
     /**
      * The "type" of the primary key ID.

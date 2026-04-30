@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\CleansBinaryDates;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -27,7 +28,7 @@ use Illuminate\Support\Str;
 #[WithoutIncrementing]
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasUuids;
+    use HasFactory, Notifiable, HasUuids, CleansBinaryDates;
 
     /**
      * The "type" of the primary key ID.
@@ -48,28 +49,6 @@ class User extends Authenticatable
             'password' => 'hashed',
             'google_token_expires_at' => 'datetime',
         ];
-    }
-
-    /**
-     * Override asDateTime to clean binary data from hosting.
-     */
-    protected function asDateTime($value)
-    {
-        if (is_resource($value)) {
-            $value = stream_get_contents($value);
-        }
-
-        if (is_string($value)) {
-            // Remove binary null bytes and non-printable characters
-            $value = preg_replace('/[[:cntrl:]]/', '', $value);
-            
-            // Fallback if string is empty or corrupted after cleaning
-            if (empty($value) || !preg_match('/^[0-9]/', $value)) {
-                return parent::asDateTime(now());
-            }
-        }
-
-        return parent::asDateTime($value);
     }
 
     /**

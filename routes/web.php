@@ -18,6 +18,8 @@ Route::get('/', function () {
     return auth()->check() ? redirect('/dashboard') : redirect('/login');
 });
 
+Route::view('/privacy-policy', 'privacy')->name('privacy');
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', Login::class)->name('login');
 

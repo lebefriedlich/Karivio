@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\CleansBinaryDates;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
 #[WithoutIncrementing]
 class EmailLog extends Model
 {
-    use HasUuids;
+    use HasUuids, CleansBinaryDates;
 
     protected $keyType = 'string';
 
