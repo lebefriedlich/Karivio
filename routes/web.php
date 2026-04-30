@@ -14,15 +14,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\GoogleController;
 
-Route::get('/', function () {
-    return auth()->check() ? redirect('/dashboard') : redirect('/login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', Login::class)->name('login');
+
+    // Google Auth Routes
+    Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/oauth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 });
-
-Route::get('/login', Login::class)->name('login');
-
-// Google Auth Routes
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/oauth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
