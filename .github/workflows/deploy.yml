@@ -1,0 +1,48 @@
+name: deploy
+
+on:
+  workflow_run:
+    workflows: ["tests"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Laravel Deploy via FTP
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+
+      - name: Upload aplikasi (tanpa folder public/)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME_NON_PUBLIC }}
+          password: ${{ secrets.FTP_PASSWORD_NON_PUBLIC }}
+          server-dir: /
+          local-dir: ./
+          exclude: |
+            public
+            .git*
+            node_modules
+            tests
+            storage/*.key
+            .env
+
+      - name: Upload folder public ke subdomain
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /
+          local-dir: ./public/
