@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('assets/js/config.min.js') }}"></script>
 
     @livewireStyles
 </head>
@@ -374,7 +374,7 @@
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
     <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/app.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

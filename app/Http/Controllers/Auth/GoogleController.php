@@ -24,7 +24,9 @@ class GoogleController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
+            \Log::info('Google Login Attempt', ['email' => $user->email]);
         } catch (Exception $e) {
+            \Log::error('Google Login Error', ['message' => $e->getMessage()]);
             return redirect('/login')->with('error', 'Gagal login dengan Google.');
         }
 
@@ -43,12 +45,19 @@ class GoogleController extends Controller
             ->first();
 
         if ($existingUser) {
-            // Update data and tokens
+            \Log::info('Existing User Found', ['id' => $existingUser->id]);
             $existingUser->update($userData);
             Auth::login($existingUser);
         } else {
+            \Log::info('Creating New User', ['email' => $user->email]);
             $newUser = User::create($userData);
             Auth::login($newUser);
+        }
+
+        if (Auth::check()) {
+            \Log::info('Login Successful', ['user_id' => Auth::id()]);
+        } else {
+            \Log::error('Login Failed - Auth::check() returned false');
         }
 
         return redirect()->intended('/dashboard');
