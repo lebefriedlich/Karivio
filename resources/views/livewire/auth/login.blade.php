@@ -205,7 +205,10 @@
                 <!-- end card -->
 
                 <div class="text-center my-4">
-                    <p class="text-muted">Karivio &copy; {{ date('Y') }}</p>
+                    <p class="text-muted">
+                        Karivio &copy; {{ date('Y') }} | 
+                        <a href="{{ route('privacy') }}" class="hover:text-primary transition-all underline">Privacy Policy</a>
+                    </p>
                 </div>
             </div>
         </div>
