@@ -38,19 +38,19 @@
                             <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Nama Lengkap</label>
-                                <input type="text" wire:model.live="full_name" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Nama Lengkap">
+                                <input type="text" wire:model.live="full_name" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Nama Lengkap">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Nomor Telepon</label>
-                                <input type="tel" wire:model="phone" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0812...">
+                                <input type="tel" wire:model="phone" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0812...">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Email</label>
-                                <input type="email" wire:model="email" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="email@contoh.com">
+                                <input type="email" wire:model="email" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="email@contoh.com">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Kota Asal</label>
-                                <input type="text" wire:model="city" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Kota">
+                                <input type="text" wire:model="city" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Kota">
                             </div>
                             </div>
                         </div>
@@ -64,19 +64,19 @@
                             <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Nama Perusahaan</label>
-                                <input type="text" wire:model.live="company_name" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Nama Perusahaan">
+                                <input type="text" wire:model.live="company_name" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Nama Perusahaan">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Posisi yang Dilamar</label>
-                                <input type="text" wire:model.live="applied_position" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Posisi">
+                                <input type="text" wire:model.live="applied_position" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Posisi">
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Alamat Perusahaan</label>
-                                <input type="text" wire:model="company_address" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Alamat Perusahaan">
+                                <input type="text" wire:model="company_address" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Alamat Perusahaan">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Tanggal Surat</label>
-                                <input type="date" wire:model="date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <input type="date" wire:model="date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                                 <span class="flex items-center justify-center w-8 h-8 bg-primary text-white rounded-full font-bold">3</span>
                                 <h5 class="text-xl font-bold text-slate-900 dark:text-slate-200">Isi Surat (Body)</h5>
                             </div>
-                            <textarea wire:model="content" rows="15" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"></textarea>
+                            <textarea wire:model="content" rows="15" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"></textarea>
                         </div>
 
                         <div class="flex flex-wrap items-center justify-start gap-4 pt-8">

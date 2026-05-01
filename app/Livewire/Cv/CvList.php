@@ -3,6 +3,7 @@
 namespace App\Livewire\Cv;
 
 use App\Models\Cv;
+use App\Services\DocumentStorageService;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -42,6 +43,7 @@ class CvList extends Component
     {
         $cv = Cv::find($cvId);
         if ($cv && $cv->user_id === auth()->id()) {
+            DocumentStorageService::deleteCvFiles($cv);
             $cv->delete();
             $this->loadCvs();
             $this->dispatch('toast', [

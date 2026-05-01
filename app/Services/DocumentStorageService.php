@@ -50,4 +50,46 @@ class DocumentStorageService
             throw $e;
         }
     }
+
+    public static function deleteCvFiles(Cv $cv)
+    {
+        try {
+            $directory = 'public/users/' . $cv->user_id . '/cvs/';
+            $files = Storage::files($directory);
+            $deletedCount = 0;
+
+            foreach ($files as $file) {
+                // Check if file ends with _{id}.pdf
+                if (str_ends_with($file, '_' . $cv->id . '.pdf')) {
+                    Storage::delete($file);
+                    $deletedCount++;
+                }
+            }
+            
+            \Illuminate\Support\Facades\Log::info("Deleted $deletedCount CV files for CV ID: " . $cv->id);
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Error deleting CV files: ' . $e->getMessage());
+        }
+    }
+
+    public static function deleteCoverLetterFiles(CoverLetter $cl)
+    {
+        try {
+            $directory = 'public/users/' . $cl->user_id . '/cover_letters/';
+            $files = Storage::files($directory);
+            $deletedCount = 0;
+
+            foreach ($files as $file) {
+                // Check if file ends with _{id}.pdf
+                if (str_ends_with($file, '_' . $cl->id . '.pdf')) {
+                    Storage::delete($file);
+                    $deletedCount++;
+                }
+            }
+            
+            \Illuminate\Support\Facades\Log::info("Deleted $deletedCount Cover Letter files for CL ID: " . $cl->id);
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Error deleting Cover Letter files: ' . $e->getMessage());
+        }
+    }
 }

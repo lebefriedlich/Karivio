@@ -3,6 +3,7 @@
 namespace App\Livewire\CoverLetter;
 
 use App\Models\CoverLetter;
+use App\Services\DocumentStorageService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -28,6 +29,7 @@ class CoverLetterList extends Component
     public function delete($id)
     {
         $cl = CoverLetter::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        DocumentStorageService::deleteCoverLetterFiles($cl);
         $cl->delete();
         $this->dispatch('toast', [
             'type' => 'success',

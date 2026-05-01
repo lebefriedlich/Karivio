@@ -33,39 +33,39 @@
                     <!-- Placeholder Controls -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 mb-1">Nama Anda</label>
-                        <input type="text" wire:model.live="name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900" placeholder="Nama Lengkap">
+                        <input type="text" wire:model.live="name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900" placeholder="Nama Lengkap">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 mb-1">Posisi Dilamar</label>
-                        <input type="text" wire:model.live="position" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900" placeholder="Posisi Dilamar">
+                        <input type="text" wire:model.live="position" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900" placeholder="Posisi Dilamar">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 mb-1">Nama Perusahaan</label>
-                        <input type="text" wire:model.live="company_name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900" placeholder="Nama Perusahaan">
+                        <input type="text" wire:model.live="company_name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900" placeholder="Nama Perusahaan">
                     </div>
 
                     <div class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div class="md:col-span-1">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Kepada (Recruiter)</label>
-                                <input type="email" wire:model="to" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Email Recruiter">
+                                <input type="email" wire:model="to" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Email Recruiter">
                                 @error('to') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-1">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Subjek</label>
-                                <input type="text" wire:model="subject" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Subjek Email">
+                                <input type="text" wire:model="subject" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Subjek Email">
                                 @error('subject') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-1">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Waktu Kirim (Opsional)</label>
-                                <input type="datetime-local" wire:model="scheduled_at" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all">
+                                <input type="datetime-local" wire:model="scheduled_at" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all">
                                 <p class="text-[10px] text-slate-400 mt-1 italic">Kosongkan untuk kirim sekarang.</p>
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Isi Email</label>
-                            <textarea wire:model="body" rows="10" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all font-serif text-[15px] leading-relaxed"></textarea>
+                            <textarea wire:model="body" rows="10" class="w-full px-4 py-4 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all font-serif text-[15px] leading-relaxed"></textarea>
                             @error('body') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                         </div>
                     </div>

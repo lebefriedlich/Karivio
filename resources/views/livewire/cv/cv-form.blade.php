@@ -38,27 +38,27 @@
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Nama Lengkap</label>
-                                    <input type="text" wire:model="full_name" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Nama Lengkap" required>
+                                    <input type="text" wire:model="full_name" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Nama Lengkap" required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Nomor Telepon</label>
-                                    <input type="tel" wire:model="phone" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0812..." required>
+                                    <input type="tel" wire:model="phone" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0812..." required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Email</label>
-                                    <input type="email" wire:model="email" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="email@contoh.com" required>
+                                    <input type="email" wire:model="email" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="email@contoh.com" required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">Domisili (Kota/Kabupaten)</label>
-                                    <input type="text" wire:model="location" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Contoh: Jakarta Selatan" required>
+                                    <input type="text" wire:model="location" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Contoh: Jakarta Selatan" required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">URL LinkedIn</label>
-                                    <input type="url" wire:model="linkedin_url" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://linkedin.com/in/username">
+                                    <input type="url" wire:model="linkedin_url" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://linkedin.com/in/username">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">URL Portofolio / Website</label>
-                                    <input type="url" wire:model="portfolio_url" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://portofolio.com">
+                                    <input type="url" wire:model="portfolio_url" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://portofolio.com">
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                 <h5 class="text-xl font-bold text-slate-900 dark:text-slate-200">Tentang Saya / Ringkasan Profesional</h5>
                             </div>
                             <div>
-                                <textarea wire:model="professional_summary" rows="5" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Ceritakan singkat tentang pengalaman dan keahlian Anda..."></textarea>
+                                <textarea wire:model="professional_summary" rows="5" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Ceritakan singkat tentang pengalaman dan keahlian Anda..."></textarea>
                             </div>
                         </div>
 
@@ -85,23 +85,23 @@
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Instansi Pendidikan</label>
-                                        <input type="text" wire:model="current_education.institution" placeholder="Contoh: Universitas Gadjah Mada" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="text" wire:model="current_education.institution" placeholder="Contoh: Universitas Gadjah Mada" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Jurusan / Program Studi</label>
-                                        <input type="text" wire:model="current_education.major" placeholder="Contoh: Teknik Informatika" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="text" wire:model="current_education.major" placeholder="Contoh: Teknik Informatika" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Nilai (IPK/Akhir)</label>
-                                        <input type="text" wire:model="current_education.score" placeholder="Contoh: 3.80 / 4.00" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="text" wire:model="current_education.score" placeholder="Contoh: 3.80 / 4.00" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Mulai</label>
-                                        <input type="month" wire:model="current_education.start_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="month" wire:model="current_education.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_education.end_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="month" wire:model="current_education.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                 </div>
                                 <button type="button" wire:click="addEducation" wire:loading.attr="disabled" class="w-full py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition disabled:opacity-75">
@@ -141,23 +141,23 @@
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Perusahaan / Organisasi</label>
-                                        <input type="text" wire:model="current_work.company" placeholder="Nama Perusahaan" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="text" wire:model="current_work.company" placeholder="Nama Perusahaan" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Posisi / Jabatan</label>
-                                        <input type="text" wire:model="current_work.position" placeholder="Contoh: Backend Developer" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="text" wire:model="current_work.position" placeholder="Contoh: Backend Developer" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Mulai</label>
-                                        <input type="month" wire:model="current_work.start_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="month" wire:model="current_work.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_work.end_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="month" wire:model="current_work.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Pekerjaan</label>
-                                        <textarea wire:model="current_work.description" placeholder="Apa yang Anda kerjakan? Gunakan poin-poin jika perlu." rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm"></textarea>
+                                        <textarea wire:model="current_work.description" placeholder="Apa yang Anda kerjakan? Gunakan poin-poin jika perlu." rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm"></textarea>
                                     </div>
                                 </div>
                                 <button type="button" wire:click="addWorkExperience" wire:loading.attr="disabled" class="w-full py-2 bg-primary text-white rounded-lg font-semibold transition disabled:opacity-75">
@@ -197,23 +197,23 @@
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Nama Organisasi</label>
-                                        <input type="text" wire:model="current_org.organization" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="text" wire:model="current_org.organization" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Jabatan</label>
-                                        <input type="text" wire:model="current_org.role" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="text" wire:model="current_org.role" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Mulai</label>
-                                        <input type="month" wire:model="current_org.start_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="month" wire:model="current_org.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_org.end_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="month" wire:model="current_org.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Kegiatan</label>
-                                        <textarea wire:model="current_org.description" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
+                                        <textarea wire:model="current_org.description" rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
                                     </div>
                                 </div>
                                 <button type="button" wire:click="addOrganization" wire:loading.attr="disabled" class="w-full py-2 bg-primary text-white rounded-lg font-semibold transition disabled:opacity-75">
@@ -253,23 +253,23 @@
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Peran / Jabatan</label>
-                                        <input type="text" wire:model="current_assistance.role" placeholder="Contoh: Asisten Laboratorium" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="text" wire:model="current_assistance.role" placeholder="Contoh: Asisten Laboratorium" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Instansi / Lokasi</label>
-                                        <input type="text" wire:model="current_assistance.location" placeholder="Nama Instansi" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="text" wire:model="current_assistance.location" placeholder="Nama Instansi" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Mulai</label>
-                                        <input type="month" wire:model="current_assistance.start_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="month" wire:model="current_assistance.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_assistance.end_date" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                        <input type="month" wire:model="current_assistance.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Tugas</label>
-                                        <textarea wire:model="current_assistance.description" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
+                                        <textarea wire:model="current_assistance.description" rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700  text-black dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
                                     </div>
                                 </div>
                                 <button type="button" wire:click="addAssistance" wire:loading.attr="disabled" class="w-full py-2 bg-primary text-white rounded-lg font-semibold transition disabled:opacity-75">
@@ -313,8 +313,8 @@
                                     <p class="text-xs text-gray-500 dark:text-slate-400 mb-4 italic">Contoh: Bahasa Pemrograman : PHP, JS, Go</p>
                                     <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800 mb-4">
                                         <div class="space-y-3 mb-3">
-                                            <input type="text" wire:model="current_hard_skill.category" placeholder="Kategori (Misal: Bahasa Pemrograman)" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
-                                            <textarea wire:model="current_hard_skill.skills" placeholder="Isi Skill (Misal: PHP, JavaScript, Go)" rows="2" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm"></textarea>
+                                            <input type="text" wire:model="current_hard_skill.category" placeholder="Kategori (Misal: Bahasa Pemrograman)" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                            <textarea wire:model="current_hard_skill.skills" placeholder="Isi Skill (Misal: PHP, JavaScript, Go)" rows="2" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm"></textarea>
                                         </div>
                                         <button type="button" wire:click="addHardSkill" wire:loading.attr="disabled" style="background-color: #2563eb; color: white; padding: 6px 12px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; border: none; width: 100%; cursor: pointer;" class="disabled:opacity-75">
                                             <span wire:loading.remove wire:target="addHardSkill">+ Tambah Kategori</span>
@@ -342,7 +342,7 @@
                                 <div>
                                     <h6 class="font-bold text-gray-700 dark:text-white mb-3">Soft Skill</h6>
                                     <div class="flex gap-2 mb-4">
-                                        <input type="text" wire:model="current_soft_skill" placeholder="Misal: Leadership" class="flex-1 px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
+                                        <input type="text" wire:model="current_soft_skill" placeholder="Misal: Leadership" class="flex-1 px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                         <button type="button" wire:click="addSoftSkill" wire:loading.attr="disabled" style="background-color: #4f46e5; color: white; padding: 8px 16px; border-radius: 8px; font-size: 0.875rem; border: none; cursor: pointer;" class="disabled:opacity-75">
                                             <span wire:loading.remove wire:target="addSoftSkill">Tambah</span>
                                             <span wire:loading wire:target="addSoftSkill">...</span>
@@ -371,11 +371,11 @@
                             <div class="grid md:grid-cols-2 gap-4 bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-slate-700 mb-6">
                                 <div>
                                     <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Bahasa</label>
-                                    <input type="text" wire:model="current_language.language" placeholder="Misal: Indonesia" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                    <input type="text" wire:model="current_language.language" placeholder="Misal: Indonesia" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Tingkat Kemampuan</label>
-                                    <select wire:model="current_language.proficiency" class="w-full px-3 py-2 border border-gray-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
+                                    <select wire:model="current_language.proficiency" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                         <option value="Pemula">Pemula (Beginner)</option>
                                         <option value="Menengah">Menengah (Intermediate)</option>
                                         <option value="Lanjut">Lanjut (Advanced)</option>
