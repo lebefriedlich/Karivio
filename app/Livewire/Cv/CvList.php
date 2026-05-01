@@ -16,7 +16,7 @@ class CvList extends Component
 
     protected $listeners = ['doDeleteCv' => 'deleteCv'];
 
-    public function mount()
+    public function mount($cvId = null)
     {
         $this->loadCvs();
     }
@@ -39,9 +39,16 @@ class CvList extends Component
         }
     }
 
-    public function deleteCv($cvId)
+    public function deleteCv($id = null)
     {
-        $cv = Cv::find($cvId);
+        // Handle array payload from Livewire.dispatch
+        if (is_array($id) && isset($id['id'])) {
+            $id = $id['id'];
+        }
+
+        if (!$id) return;
+
+        $cv = Cv::find($id);
         if ($cv && $cv->user_id === auth()->id()) {
             DocumentStorageService::deleteCvFiles($cv);
             $cv->delete();

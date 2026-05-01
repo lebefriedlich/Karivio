@@ -15,6 +15,11 @@ class CoverLetterList extends Component
 {
     protected $listeners = ['doDeleteCoverLetter' => 'delete'];
 
+    public function mount($id = null)
+    {
+        // Handle potential route params
+    }
+
     public function confirmDelete($id)
     {
         $cl = CoverLetter::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
@@ -26,8 +31,15 @@ class CoverLetterList extends Component
         ]);
     }
 
-    public function delete($id)
+    public function delete($id = null)
     {
+        // Handle array payload from Livewire.dispatch
+        if (is_array($id) && isset($id['id'])) {
+            $id = $id['id'];
+        }
+
+        if (!$id) return;
+
         $cl = CoverLetter::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         DocumentStorageService::deleteCoverLetterFiles($cl);
         $cl->delete();

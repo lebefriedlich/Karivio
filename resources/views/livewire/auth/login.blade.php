@@ -1,4 +1,4 @@
-<div class="relative flex flex-col">
+<div>
     <!-- Svg Background -->
     <div class="absolute inset-0 h-screen w-screen">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1920 1028">
@@ -184,12 +184,12 @@
 
                     <div class="p-9">
                         <div class="text-center mx-auto w-3/4">
-                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Masuk</h4>
+                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-white mb-2">Masuk</h4>
                             <p class="text-gray-400 mb-9">Silakan masuk menggunakan akun Google Anda untuk mengakses dashboard.</p>
                         </div>
 
                         <div class="text-center">
-                            <a href="{{ route('auth.google') }}" class="btn border border-gray-300 text-gray-700 w-full flex items-center justify-center gap-2 py-3 hover:bg-gray-50 transition-all">
+                            <a href="{{ route('auth.google') }}" class="btn border border-gray-300 text-gray-700 dark:text-white w-full flex items-center justify-center gap-2 py-3 hover:bg-gray-50 dark:hover:bg-gray-700     transition-all">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48">
                                     <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                                     <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -207,7 +207,7 @@
                 <div class="text-center my-4">
                     <p class="text-muted">
                         Karivio &copy; {{ date('Y') }} | 
-                        <a href="{{ route('privacy') }}" class="hover:text-primary transition-all underline">Privacy Policy</a>
+                        <a href="{{ route('privacy') }}" class="hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-all underline">Privacy Policy</a>
                     </p>
                 </div>
             </div>

@@ -12,7 +12,6 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ asset('assets/js/config.min.js') }}"></script>
-
     @livewireStyles
 </head>
 
@@ -197,12 +196,7 @@
                 <footer class="footer h-16 flex items-center px-6 bg-white shadow dark:bg-gray-800 mt-auto">
                     <div class="flex md:justify-between justify-center w-full gap-4">
                         <div>
-                            <script>document.write(new Date().getFullYear())</script> © Karivio - <a href="#" target="_blank">Karivio Team</a>
-                        </div>
-                        <div class="md:flex hidden gap-4 item-center md:justify-end">
-                            <a href="javascript: void(0);" class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">Tentang</a>
-                            <a href="javascript: void(0);" class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">Dukungan</a>
-                            <a href="javascript: void(0);" class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">Hubungi Kami</a>
+                            <script>document.write(new Date().getFullYear())</script> © Karivio - <a href="https://www.linkedin.com/in/maulana-haekal/" target="_blank">Maulana Haekal Noval Akbar</a>
                         </div>
                     </div>
                 </footer>

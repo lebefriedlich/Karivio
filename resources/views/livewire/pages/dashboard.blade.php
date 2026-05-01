@@ -11,10 +11,10 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900 mb-2">📁 File Saya</h2>
-                <p class="text-indigo-700 dark:text-gray-500/90">Lihat semua dokumen CV dan Cover Letter Anda di satu tempat</p>
+                <p class="text-blue-700 dark:text-gray-700">Lihat semua dokumen CV dan Cover Letter Anda di satu tempat</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ route('email.list') }}" class="btn bg-white dark:bg-slate-800 text-indigo dark:text-emerald-300 shadow-lg shadow-red-600/10 border border-transparent dark:border-emerald-800/50">
+                <a href="{{ route('email.list') }}" class="btn bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg shadow-red-600/10 border border-transparent dark:border-emerald-800/50">
                     ✉️ Kirim Email
                 </a>
                 <a href="{{ route('file-management') }}" class="btn bg-indigo-600 dark:bg-emerald-600 text-white shadow-lg shadow-indigo-600/20">
@@ -29,13 +29,13 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900 mb-2">📄 Manajemen CV</h2>
-                <p class="text-blue-700 dark:text-gray-500/90">Buat, edit, dan kelola CV Anda dengan mudah</p>
+                <p class="text-blue-700 dark:text-gray-700">Buat, edit, dan kelola CV Anda dengan mudah</p>
             </div>
             <div class="flex gap-3">
                 <a href="{{ route('cv.form') }}" class="btn bg-primary text-white shadow-lg shadow-primary/20">
                     ✏️ Buat CV Baru
                 </a>
-                <a href="{{ route('cv.list') }}" class="btn bg-white dark:bg-slate-800 text-primary border border-primary/20 dark:border-blue-800/50 shadow-sm">
+                <a href="{{ route('cv.list') }}" class="btn bg-white dark:bg-slate-800 text-black dark:text-white border border-primary/20 dark:border-blue-800/50 shadow-sm">
                     📋 Lihat CV Saya
                 </a>
             </div>
@@ -47,13 +47,13 @@
         <div class="flex justify-between items-center">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900 mb-2">✉️ Manajemen Cover Letter</h2>
-                <p class="text-blue-700 dark:text-gray-500/90">Buat surat lamaran kerja profesional dalam hitungan detik</p>
+                <p class="text-blue-700 dark:text-gray-700">Buat surat lamaran kerja profesional dalam hitungan detik</p>
             </div>
             <div class="flex gap-3">
                 <a href="{{ route('cover-letter.form') }}" class="btn bg-primary text-white shadow-lg shadow-primary/20">
                     ✍️ Buat Surat Baru
                 </a>
-                <a href="{{ route('cover-letter.list') }}" class="btn bg-white dark:bg-slate-800 text-primary dark:text-indigo-300 border border-primary/20 dark:border-indigo-800/50 shadow-sm">
+                <a href="{{ route('cover-letter.list') }}" class="btn bg-white dark:bg-slate-800 text-black dark:text-white border border-primary/20 dark:border-indigo-800/50 shadow-sm">
                     📂 Daftar Surat
                 </a>
             </div>
