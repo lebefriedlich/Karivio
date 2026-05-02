@@ -68,6 +68,7 @@
             margin-bottom: 6pt;
             display: block;
             width: 100%;
+            page-break-after: avoid;
         }
 
         /* Content Blocks */
