@@ -74,7 +74,7 @@ class SendEmail extends Component
                 'real_id' => $cv->id,
                 'type' => 'cv',
                 'name' => 'CV - ' . $cv->full_name,
-                'path' => 'public/users/' . Auth::id() . '/cvs/CV_' . str_replace(' ', '_', $cv->full_name) . '_' . $cv->id . '.pdf'
+                'path' => 'users/' . Auth::id() . '/cvs/CV_' . str_replace(' ', '_', $cv->full_name) . '_' . $cv->id . '.pdf'
             ];
         });
 
@@ -84,7 +84,7 @@ class SendEmail extends Component
                 'real_id' => $cl->id,
                 'type' => 'cl',
                 'name' => 'CL - ' . $cl->company_name,
-                'path' => 'public/users/' . Auth::id() . '/cover_letters/Cover_Letter_' . str_replace(' ', '_', $cl->company_name) . '_' . $cl->id . '.pdf'
+                'path' => 'users/' . Auth::id() . '/cover_letters/Cover_Letter_' . str_replace(' ', '_', $cl->company_name) . '_' . $cl->id . '.pdf'
             ];
         });
 
@@ -145,7 +145,7 @@ class SendEmail extends Component
             // Add selected system files
             foreach ($this->allSystemFiles as $file) {
                 if (in_array($file['id'], $this->selectedSystemFileIds)) {
-                    if (!Storage::exists($file['path'])) {
+                    if (!Storage::disk('public')->exists($file['path'])) {
                         if ($file['type'] === 'cv') {
                             $doc = Cv::find($file['real_id']);
                             DocumentStorageService::saveCvPdf($doc);
@@ -163,7 +163,7 @@ class SendEmail extends Component
 
             // Add external uploaded files
             foreach ($this->externalFiles as $file) {
-                $path = $file->store('public/temp_attachments');
+                $path = $file->store('temp_attachments', 'public');
                 $attachments[] = [
                     'path' => $path,
                     'name' => $file->getClientOriginalName()

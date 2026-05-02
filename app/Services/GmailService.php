@@ -41,9 +41,10 @@ class GmailService
             if ($attachments && is_array($attachments)) {
                 foreach ($attachments as $attachment) {
                     $attachmentPath = $attachment['path'] ?? null;
-                    if ($attachmentPath && Storage::exists($attachmentPath)) {
+                    if ($attachmentPath && Storage::disk('public')->exists($attachmentPath)) {
                         $filename = $attachment['name'] ?? basename($attachmentPath);
-                        $fileContent = Storage::get($attachmentPath);
+                        $absolutePath = Storage::disk('public')->path($attachmentPath);
+                        $fileContent = file_get_contents($absolutePath);
                         $mimeType = 'application/pdf';
                         
                         $rawMessage .= "--$boundary\r\n";
