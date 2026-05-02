@@ -1,4 +1,4 @@
-<main class="p-6">
+<main class="p-6" wire:poll.5s>
     <!-- Page Header -->
     <div class="flex justify-between items-center mb-8">
         <div>

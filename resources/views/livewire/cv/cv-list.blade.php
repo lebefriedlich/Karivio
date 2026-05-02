@@ -1,7 +1,7 @@
 <main class="p-6" x-data>
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">📃Daftar CV Saya</h4>
+            <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">📃List CV Saya</h4>
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Kelola dan lihat semua CV Anda</p>
         </div>
 

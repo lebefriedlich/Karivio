@@ -5,7 +5,7 @@
                 @if ($coverLetterId)
                     Edit Cover Letter - {{ $company_name }}
                 @else
-                    Buat Cover Letter Baru
+                    Buat Cover Letter
                 @endif
             </h4>
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Isi data Cover Letter Anda</p>

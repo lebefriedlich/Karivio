@@ -2,7 +2,7 @@
     <!-- Header dengan Aksi Utama -->
     <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Preview Cover Letter</h1>
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Pratinjau Cover Letter</h1>
             <p class="text-gray-500 dark:text-gray-400 mt-1 font-medium">{{ $coverLetter->company_name }}</p>
         </div>
         <div class="flex flex-wrap items-center gap-3">

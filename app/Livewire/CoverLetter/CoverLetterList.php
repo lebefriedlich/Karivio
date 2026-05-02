@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
-#[Title('Daftar Cover Letter')]
+#[Title('List Cover Letter')]
 class CoverLetterList extends Component
 {
     protected $listeners = ['doDeleteCoverLetter' => 'delete'];

@@ -5,7 +5,7 @@
                 @if ($cv && $cv->exists)
                     Edit CV - {{ $cv->full_name }}
                 @else
-                    Buat CV Baru
+                    Buat CV
                 @endif
             </h4>
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Isi data pribadi dan profesional Anda</p>

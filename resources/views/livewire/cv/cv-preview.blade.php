@@ -24,7 +24,7 @@
     <div class="flex justify-between items-center mb-8">
         <div>
             <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">
-                Preview CV - {{ $cv->full_name }}
+                Pratinjau CV - {{ $cv->full_name }}
             </h4>
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Lihat hasil akhir CV Anda sebelum didownload atau dibagikan</p>
         </div>
@@ -45,8 +45,14 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <!-- Main Content (CV Paper) -->
         <div class="lg:col-span-2 flex justify-center">
-            <div class="bg-white dark:bg-gray-900 shadow-2xl border border-gray-100 dark:border-gray-800 ring-1 ring-gray-200/50 dark:ring-white/5 dark:text-gray-200" 
-                 style="width: 210mm; min-height: 297mm; padding: 1.27cm 1cm 1.27cm 1.27cm; box-sizing: border-box; font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.2; border-radius: 4px; position: relative; background-image: linear-gradient(to bottom, transparent 297mm, #e5e7eb 297mm, #e5e7eb 297.5mm, transparent 297.5mm); background-size: 100% 297.5mm;">
+            <div class="bg-white dark:bg-gray-900 shadow-2xl border border-gray-100 dark:border-gray-800 ring-1 ring-gray-200/50 dark:ring-white/5 dark:text-gray-200 overflow-hidden" 
+                 style="width: 210mm; min-height: 297mm; padding: 1.27cm 1cm 1.27cm 1.27cm; box-sizing: border-box; font-family: 'Times New Roman', Times, serif; font-size: 11pt; line-height: 1.2; border-radius: 4px; position: relative; 
+                        background-image: repeating-linear-gradient(to bottom, transparent, transparent 296.5mm, #ef4444 296.5mm, #ef4444 297mm, transparent 297mm);
+                        background-size: 100% 297mm;">
+                
+                <!-- Page Indicator Overlays -->
+                <div class="absolute right-0 top-[297mm] -mr-16 text-[10px] font-bold text-red-500 uppercase tracking-widest pointer-events-none" style="transform: rotate(90-deg) translateY(-50%);">Halaman 2 ⮕</div>
+                <div class="absolute right-0 top-[594mm] -mr-16 text-[10px] font-bold text-red-500 uppercase tracking-widest pointer-events-none" style="transform: rotate(90-deg) translateY(-50%);">Halaman 3 ⮕</div>
                 <div style="width: 100%;">
                     <!-- Header (Centered like PDF) -->
                     <div class="text-center mb-6">
@@ -67,7 +73,7 @@
                     <!-- Profil -->
                     @if ($cv->professional_summary)
                         <section class="mb-5">
-                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full">Profil</h2>
+                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full" style="page-break-after: avoid;">Profil</h2>
                             <p class="text-gray-700 dark:text-gray-300 text-justify leading-relaxed">{{ $cv->professional_summary }}</p>
                         </section>
                     @endif
@@ -75,7 +81,7 @@
                     <!-- Pendidikan -->
                     @if ($cv->education && count($cv->education) > 0)
                         <section class="mb-5">
-                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full">Pendidikan</h2>
+                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full" style="page-break-after: avoid;">Pendidikan</h2>
                             @foreach ($cv->education as $edu)
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100">
@@ -94,7 +100,7 @@
                     <!-- Pengalaman Profesional -->
                     @if ($cv->work_experiences && count($cv->work_experiences) > 0)
                         <section class="mb-5">
-                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full">Pengalaman Profesional</h2>
+                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full" style="page-break-after: avoid;">Pengalaman Profesional</h2>
                             @foreach ($cv->work_experiences as $work)
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100 uppercase">
@@ -119,7 +125,7 @@
                     <!-- Pengalaman Asistensi -->
                     @if ($cv->assistance_experiences && count($cv->assistance_experiences) > 0)
                         <section class="mb-5">
-                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full">Pengalaman Asistensi</h2>
+                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full" style="page-break-after: avoid;">Pengalaman Asistensi</h2>
                             @foreach ($cv->assistance_experiences as $ast)
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100 uppercase">
@@ -144,7 +150,7 @@
                     <!-- Pengalaman Organisasi -->
                     @if ($cv->organization_experiences && count($cv->organization_experiences) > 0)
                         <section class="mb-5">
-                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full">Pengalaman Organisasi</h2>
+                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full" style="page-break-after: avoid;">Pengalaman Organisasi</h2>
                             @foreach ($cv->organization_experiences as $org)
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100 uppercase">
@@ -175,7 +181,7 @@
 
                     @if ($hasSkills)
                         <section class="mb-5">
-                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full">Skills</h2>
+                            <h2 class="text-[11pt] font-bold text-gray-900 dark:text-gray-100 uppercase border-b border-gray-900 dark:border-gray-700 mb-2 w-full" style="page-break-after: avoid;">Skills</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     @if (count($techSkills) > 0)

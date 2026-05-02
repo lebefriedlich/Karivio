@@ -1,7 +1,7 @@
 <main class="p-6 max-w-7xl mx-auto">
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">✉️ Tulis Lamaran Baru</h4>
+            <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">Kirim Lamaran Baru</h4>
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Lengkapi form di bawah untuk mengirim lamaran via Gmail.</p>
         </div>
         <div class="flex items-center gap-3">
@@ -10,8 +10,6 @@
             </a>
         </div>
     </div>
-
-
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <!-- Left: Form -->
@@ -33,39 +31,39 @@
                     <!-- Placeholder Controls -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 mb-1">Nama Anda</label>
-                        <input type="text" wire:model.live="name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900" placeholder="Nama Lengkap">
+                        <input type="text" wire:model.live="name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white" placeholder="Nama Lengkap">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 mb-1">Posisi Dilamar</label>
-                        <input type="text" wire:model.live="position" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900" placeholder="Posisi Dilamar">
+                        <input type="text" wire:model.live="position" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white" placeholder="Posisi Dilamar">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-500 mb-1">Nama Perusahaan</label>
-                        <input type="text" wire:model.live="company_name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900" placeholder="Nama Perusahaan">
+                        <input type="text" wire:model.live="company_name" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white" placeholder="Nama Perusahaan">
                     </div>
 
                     <div class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div class="md:col-span-1">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Kepada (Recruiter)</label>
-                                <input type="email" wire:model="to" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Email Recruiter">
+                                <input type="email" wire:model="to" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Email Recruiter">
                                 @error('to') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-1">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Subjek</label>
-                                <input type="text" wire:model="subject" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Subjek Email">
+                                <input type="text" wire:model="subject" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Subjek Email">
                                 @error('subject') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-1">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Waktu Kirim (Opsional)</label>
-                                <input type="datetime-local" wire:model="scheduled_at" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all">
+                                <input type="datetime-local" wire:model="scheduled_at" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 transition-all">
                                 <p class="text-[10px] text-slate-400 mt-1 italic">Kosongkan untuk kirim sekarang.</p>
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Isi Email</label>
-                            <textarea wire:model="body" rows="10" class="w-full px-4 py-4 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-primary/20 transition-all font-serif text-[15px] leading-relaxed"></textarea>
+                            <textarea wire:model="body" rows="10" class="w-full px-4 py-4 rounded-xl border border-slate-200 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 transition-all font-serif text-[15px] leading-relaxed"></textarea>
                             @error('body') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -109,7 +107,39 @@
                 <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
                     <i class="ri-upload-cloud-2-line text-emerald-500"></i> Upload Manual
                 </h3>
-                <input type="file" wire:model="externalFiles" multiple class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                
+                <div class="relative group">
+                    <label for="externalFiles" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-300 dark:border-slate-600 dark:bg-gray-900/50 rounded-2xl cursor-pointer bg-slate-50 dark:bg-slate-900/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300 active:scale-[0.98]">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i class="ri-add-circle-line text-2xl text-slate-400 group-hover:text-emerald-500 transition-colors"></i>
+                            <p class="mt-2 text-[10px] text-slate-500 dark:text-slate-400 font-medium text-center px-2">Klik untuk pilih file</p>
+                            <p class="text-[9px] text-slate-400 dark:text-slate-500 mt-1 italic">Total Maksimal 3 File (Sistem + Manual)</p>
+                        </div>
+                        <input id="externalFiles" type="file" wire:model.live="externalFiles" multiple class="hidden">
+                    </label>
+                    
+                    @error('externalFiles') 
+                        <p class="text-[10px] text-red-500 mt-2">{{ $message }}</p> 
+                    @enderror
+                </div>
+
+                @if($externalFiles)
+                    <div class="mt-4 space-y-2">
+                        @foreach($externalFiles as $index => $file)
+                            @if($file)
+                            <div class="flex items-center justify-between p-2 bg-emerald-50/50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800 rounded-lg animate-in fade-in slide-in-from-top-1">
+                                <div class="flex items-center gap-2 truncate">
+                                    <i class="ri-file-text-line text-emerald-600"></i>
+                                    <span class="text-[10px] font-medium text-slate-700 dark:text-white truncate">{{ $file->getClientOriginalName() }}</span>
+                                </div>
+                                <button type="button" wire:click="$set('externalFiles.{{ $index }}', null)" class="text-slate-400 hover:text-red-500 transition-colors">
+                                    <i class="ri-close-line"></i>
+                                </button>
+                            </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
             <!-- Info -->

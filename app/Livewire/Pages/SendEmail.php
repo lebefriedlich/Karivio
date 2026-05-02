@@ -16,7 +16,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
-#[Title('Tulis Lamaran')]
+#[Title('Kirim Lamaran')]
 class SendEmail extends Component
 {
     use WithFileUploads;
@@ -95,6 +95,28 @@ class SendEmail extends Component
     {
         if (in_array($propertyName, ['name', 'position', 'company_name'])) {
             $this->updateBody();
+        }
+
+        if ($propertyName === 'externalFiles' || $propertyName === 'selectedSystemFileIds') {
+            $total = count($this->selectedSystemFileIds) + count($this->externalFiles);
+            
+            if ($total > 3) {
+                // If external files were just added, trim them first
+                if ($propertyName === 'externalFiles') {
+                    $allowedExternal = 3 - count($this->selectedSystemFileIds);
+                    $this->externalFiles = array_slice($this->externalFiles, 0, max(0, $allowedExternal));
+                } else {
+                    // If system files were just added, trim them
+                    $allowedSystem = 3 - count($this->externalFiles);
+                    $this->selectedSystemFileIds = array_slice($this->selectedSystemFileIds, 0, max(0, $allowedSystem));
+                }
+
+                $this->dispatch('toast', [
+                    'type' => 'error',
+                    'title' => 'Gagal!',
+                    'message' => 'Total lampiran (sistem + manual) maksimal 3 file.'
+                ]);
+            }
         }
     }
 

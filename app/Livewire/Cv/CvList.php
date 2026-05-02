@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
-#[Title('Daftar CV')]
+#[Title('List CV')]
 class CvList extends Component
 {
     public $cvs = [];
