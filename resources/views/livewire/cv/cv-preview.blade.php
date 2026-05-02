@@ -80,7 +80,7 @@
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100">
                                         <span>{{ $edu['institution'] ?? '' }}</span>
-                                        <span>{{ $formatDate($edu['start_date'] ?? '') }} – {{ $formatDate($edu['end_date'] ?? '') }}</span>
+                                        <span>{{ $formatDate($edu['start_date'] ?? '') }} – {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $formatDate($edu['end_date'] ?? '') }}</span>
                                     </div>
                                     <div class="flex justify-between italic text-gray-700 dark:text-gray-300">
                                         <span>{{ $edu['major'] ?? '' }}</span>
@@ -99,7 +99,7 @@
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100 uppercase">
                                         <span>{{ $work['company'] }}</span>
-                                        <span>{{ $formatDate($work['start_date']) }} – {{ $formatDate($work['end_date'] ?? 'Sekarang') }}</span>
+                                        <span>{{ $formatDate($work['start_date']) }} – {{ ($work['is_current'] ?? false) ? 'Sekarang' : $formatDate($work['end_date'] ?? '') }}</span>
                                     </div>
                                     <div class="italic text-gray-700 dark:text-gray-300 mb-1">{{ $work['position'] }}</div>
                                     @if ($work['description'])
@@ -124,7 +124,7 @@
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100 uppercase">
                                         <span>{{ $ast['role'] }}</span>
-                                        <span>{{ $formatDate($ast['start_date']) }} – {{ $formatDate($ast['end_date'] ?? 'Sekarang') }}</span>
+                                        <span>{{ $formatDate($ast['start_date']) }} – {{ ($ast['is_current'] ?? false) ? 'Sekarang' : $formatDate($ast['end_date'] ?? '') }}</span>
                                     </div>
                                     <div class="italic text-gray-700 dark:text-gray-300 mb-1">{{ $ast['location'] }}</div>
                                     @if ($ast['description'])
@@ -149,7 +149,7 @@
                                 <div class="mb-3">
                                     <div class="flex justify-between font-bold text-gray-900 dark:text-gray-100 uppercase">
                                         <span>{{ $org['role'] }}</span>
-                                        <span>{{ $formatDate($org['start_date']) }} – {{ $formatDate($org['end_date'] ?? 'Sekarang') }}</span>
+                                        <span>{{ $formatDate($org['start_date']) }} – {{ ($org['is_current'] ?? false) ? 'Sekarang' : $formatDate($org['end_date'] ?? '') }}</span>
                                     </div>
                                     <div class="italic text-gray-700 dark:text-gray-300 mb-1">{{ $org['organization'] }}</div>
                                     @if (!empty($org['description']))

@@ -100,9 +100,13 @@
                                         <input type="month" wire:model="current_education.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_education.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
-                                    </div>
+                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
+                                         <input type="month" wire:model="current_education.end_date" @if($current_education['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
+                                         <div class="mt-1 flex items-center gap-1">
+                                             <input type="checkbox" wire:model.live="current_education.is_current" id="edu_current" class="rounded border-gray-300">
+                                             <label for="edu_current" class="text-xs text-gray-500">Masih Berjalan (Sekarang)</label>
+                                         </div>
+                                     </div>
                                 </div>
                                 <button type="button" wire:click="addEducation" wire:loading.attr="disabled" class="w-full py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition disabled:opacity-75">
                                     <span wire:loading.remove wire:target="addEducation">+ Tambah Pendidikan</span>
@@ -116,7 +120,7 @@
                                         <div>
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $edu['institution'] }}</h6>
                                             <p class="text-sm text-gray-600 dark:text-slate-400">{{ $edu['major'] }} • {{ $edu['score'] }}</p>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500">{{ $edu['start_date'] }} s/d {{ $edu['end_date'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500">{{ $edu['start_date'] }} s/d {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $edu['end_date'] }}</p>
                                         </div>
                                         <div class="flex gap-1">
                                             <button type="button" wire:click="editEducation({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Edit">
@@ -152,9 +156,13 @@
                                         <input type="month" wire:model="current_work.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_work.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm">
-                                    </div>
+                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
+                                         <input type="month" wire:model="current_work.end_date" @if($current_work['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
+                                         <div class="mt-1 flex items-center gap-1">
+                                             <input type="checkbox" wire:model.live="current_work.is_current" id="work_current" class="rounded border-gray-300">
+                                             <label for="work_current" class="text-xs text-gray-500">Masih Bekerja (Sekarang)</label>
+                                         </div>
+                                     </div>
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Pekerjaan</label>
                                         <textarea wire:model="current_work.description" placeholder="Apa yang Anda kerjakan? Gunakan poin-poin jika perlu." rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm"></textarea>
@@ -171,7 +179,7 @@
                                     <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $work['position'] }} di {{ $work['company'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $work['start_date'] }} s/d {{ $work['end_date'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $work['start_date'] }} s/d {{ ($work['is_current'] ?? false) ? 'Sekarang' : $work['end_date'] }}</p>
                                             <p class="text-sm text-gray-600 dark:text-slate-400 whitespace-pre-line">{{ $work['description'] }}</p>
                                         </div>
                                         <div class="ml-4 flex gap-1">
@@ -208,9 +216,13 @@
                                         <input type="month" wire:model="current_org.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_org.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
-                                    </div>
+                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Selesai</label>
+                                         <input type="month" wire:model="current_org.end_date" @if($current_org['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
+                                         <div class="mt-1 flex items-center gap-1">
+                                             <input type="checkbox" wire:model.live="current_org.is_current" id="org_current" class="rounded border-gray-300">
+                                             <label for="org_current" class="text-xs text-gray-500">Masih Berjalan (Sekarang)</label>
+                                         </div>
+                                     </div>
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Kegiatan</label>
                                         <textarea wire:model="current_org.description" rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
@@ -227,7 +239,7 @@
                                     <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $org['role'] }} - {{ $org['organization'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $org['start_date'] }} s/d {{ $org['end_date'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $org['start_date'] }} s/d {{ ($org['is_current'] ?? false) ? 'Sekarang' : $org['end_date'] }}</p>
                                             <p class="text-sm text-gray-600 dark:text-slate-400 whitespace-pre-line">{{ $org['description'] }}</p>
                                         </div>
                                         <div class="ml-4 flex gap-1">
@@ -264,9 +276,13 @@
                                         <input type="month" wire:model="current_assistance.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Selesai</label>
-                                        <input type="month" wire:model="current_assistance.end_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
-                                    </div>
+                                         <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Selesai</label>
+                                         <input type="month" wire:model="current_assistance.end_date" @if($current_assistance['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
+                                         <div class="mt-1 flex items-center gap-1">
+                                             <input type="checkbox" wire:model.live="current_assistance.is_current" id="ast_current" class="rounded border-gray-300">
+                                             <label for="ast_current" class="text-xs text-gray-500">Masih Berjalan (Sekarang)</label>
+                                         </div>
+                                     </div>
                                     <div class="md:col-span-2">
                                         <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Tugas</label>
                                         <textarea wire:model="current_assistance.description" rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700  text-black dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
@@ -283,7 +299,7 @@
                                     <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $ast['role'] }} - {{ $ast['location'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $ast['start_date'] }} s/d {{ $ast['end_date'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $ast['start_date'] }} s/d {{ ($ast['is_current'] ?? false) ? 'Sekarang' : $ast['end_date'] }}</p>
                                             <p class="text-sm text-gray-600 dark:text-slate-400 whitespace-pre-line">{{ $ast['description'] }}</p>
                                         </div>
                                         <div class="ml-4 flex gap-1">

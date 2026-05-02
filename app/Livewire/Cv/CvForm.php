@@ -31,6 +31,7 @@ class CvForm extends Component
         'position' => '',
         'start_date' => '',
         'end_date' => '',
+        'is_current' => false,
         'description' => '',
     ];
 
@@ -49,6 +50,7 @@ class CvForm extends Component
         'institution' => '',
         'start_date' => '',
         'end_date' => '',
+        'is_current' => false,
         'major' => '',
         'score' => '',
     ];
@@ -60,6 +62,7 @@ class CvForm extends Component
         'role' => '',
         'start_date' => '',
         'end_date' => '',
+        'is_current' => false,
         'description' => '',
     ];
 
@@ -77,6 +80,7 @@ class CvForm extends Component
         'location' => '',
         'start_date' => '',
         'end_date' => '',
+        'is_current' => false,
         'description' => '',
     ];
 
@@ -122,6 +126,22 @@ class CvForm extends Component
         }
     }
 
+    public function updated($propertyName)
+    {
+        if ($propertyName === 'current_work.is_current' && $this->current_work['is_current']) {
+            $this->current_work['end_date'] = '';
+        }
+        if ($propertyName === 'current_education.is_current' && $this->current_education['is_current']) {
+            $this->current_education['end_date'] = '';
+        }
+        if ($propertyName === 'current_org.is_current' && $this->current_org['is_current']) {
+            $this->current_org['end_date'] = '';
+        }
+        if ($propertyName === 'current_assistance.is_current' && $this->current_assistance['is_current']) {
+            $this->current_assistance['end_date'] = '';
+        }
+    }
+
     public function addWorkExperience()
     {
         if ($this->current_work['company'] && $this->current_work['position']) {
@@ -131,6 +151,7 @@ class CvForm extends Component
                 'position' => '',
                 'start_date' => '',
                 'end_date' => '',
+                'is_current' => false,
                 'description' => '',
             ];
         }
@@ -193,6 +214,7 @@ class CvForm extends Component
                 'institution' => '',
                 'start_date' => '',
                 'end_date' => '',
+                'is_current' => false,
                 'major' => '',
                 'score' => '',
             ];
@@ -220,6 +242,7 @@ class CvForm extends Component
                 'role' => '',
                 'start_date' => '',
                 'end_date' => '',
+                'is_current' => false,
                 'description' => '',
             ];
         }
@@ -269,6 +292,7 @@ class CvForm extends Component
                 'location' => '',
                 'start_date' => '',
                 'end_date' => '',
+                'is_current' => false,
                 'description' => '',
             ];
         }
@@ -365,8 +389,16 @@ class CvForm extends Component
 
     private function sortByDate($array)
     {
-        return collect($array)->sortByDesc(function($item) {
-            return $item['start_date'] ?? '';
+        return collect($array)->sort(function($a, $b) {
+            // "Present" (is_current) always at the top
+            $aCurrent = $a['is_current'] ?? false;
+            $bCurrent = $b['is_current'] ?? false;
+
+            if ($aCurrent && !$bCurrent) return -1;
+            if (!$aCurrent && $bCurrent) return 1;
+
+            // Otherwise sort by start_date descending
+            return ($b['start_date'] ?? '') <=> ($a['start_date'] ?? '');
         })->values()->toArray();
     }
 

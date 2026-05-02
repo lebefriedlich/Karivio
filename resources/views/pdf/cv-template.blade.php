@@ -190,7 +190,7 @@
                         <table style="width: 100%;">
                             <tr>
                                 <td class="left-col">{{ $edu['institution'] ?? '' }}</td>
-                                <td class="right-col">{{ $formatDate($edu['start_date'] ?? '') }} – {{ $formatDate($edu['end_date'] ?? '') }}</td>
+                                <td class="right-col">{{ $formatDate($edu['start_date'] ?? '') }} – {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $formatDate($edu['end_date'] ?? '') }}</td>
                             </tr>
                             <tr>
                                 <td class="sub-left">{{ $edu['major'] ?? '' }}</td>
@@ -211,7 +211,7 @@
                         <table style="width: 100%;">
                             <tr>
                                 <td class="left-col" style="text-transform: uppercase;">{{ $work['company'] }}</td>
-                                <td class="right-col">{{ $formatDate($work['start_date']) }} – {{ $formatDate($work['end_date'] ?? 'Sekarang') }}</td>
+                                <td class="right-col">{{ $formatDate($work['start_date']) }} – {{ ($work['is_current'] ?? false) ? 'Sekarang' : $formatDate($work['end_date'] ?? '') }}</td>
                             </tr>
                             <tr>
                                 <td class="sub-left" colspan="2">{{ $work['position'] }}</td>
@@ -240,7 +240,7 @@
                         <table style="width: 100%;">
                             <tr>
                                 <td class="left-col" style="text-transform: uppercase;">{{ $ast['role'] }}</td>
-                                <td class="right-col">{{ $formatDate($ast['start_date']) }} – {{ $formatDate($ast['end_date'] ?? 'Sekarang') }}</td>
+                                <td class="right-col">{{ $formatDate($ast['start_date']) }} – {{ ($ast['is_current'] ?? false) ? 'Sekarang' : $formatDate($ast['end_date'] ?? '') }}</td>
                             </tr>
                             <tr>
                                 <td class="sub-left" colspan="2">{{ $ast['location'] }}</td>
@@ -269,7 +269,7 @@
                         <table style="width: 100%;">
                             <tr>
                                 <td class="left-col" style="text-transform: uppercase;">{{ $org['role'] }}</td>
-                                <td class="right-col">{{ $formatDate($org['start_date']) }} – {{ $formatDate($org['end_date'] ?? 'Sekarang') }}</td>
+                                <td class="right-col">{{ $formatDate($org['start_date']) }} – {{ ($org['is_current'] ?? false) ? 'Sekarang' : $formatDate($org['end_date'] ?? '') }}</td>
                             </tr>
                             <tr>
                                 <td class="sub-left" colspan="2">{{ $org['organization'] }}</td>
