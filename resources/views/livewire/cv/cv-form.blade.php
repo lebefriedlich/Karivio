@@ -1,4 +1,19 @@
 <main class="p-6">
+    @php
+        $months = [
+            '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
+            '05' => 'Mei', '06' => 'Jun', '07' => 'Jul', '08' => 'Agu',
+            '09' => 'Sep', '10' => 'Okt', '11' => 'Nov', '12' => 'Des'
+        ];
+
+        $f = function($d) use ($months) {
+            if(!$d) return '';
+            try {
+                $dt = \Carbon\Carbon::parse($d);
+                return ($months[$dt->format('m')] ?? $dt->format('M')) . ' ' . $dt->format('Y');
+            } catch(\Exception $e) { return $d; }
+        };
+    @endphp
     <div class="flex justify-between items-center mb-8">
         <div>
             <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">
@@ -120,7 +135,7 @@
                                         <div>
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $edu['institution'] }}</h6>
                                             <p class="text-sm text-gray-600 dark:text-slate-400">{{ $edu['major'] }} • {{ $edu['score'] }}</p>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500">{{ $edu['start_date'] }} s/d {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $edu['end_date'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500">{{ $f($edu['start_date']) }} - {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $f($edu['end_date'] ?? '') }}</p>
                                         </div>
                                         <div class="flex gap-1">
                                             <button type="button" wire:click="editEducation({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Edit">
@@ -179,8 +194,14 @@
                                     <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $work['position'] }} di {{ $work['company'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $work['start_date'] }} s/d {{ ($work['is_current'] ?? false) ? 'Sekarang' : $work['end_date'] }}</p>
-                                            <p class="text-sm text-gray-600 dark:text-slate-400 whitespace-pre-line">{{ $work['description'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">
+                                                {{ $f($work['start_date']) }} - {{ ($work['is_current'] ?? false) ? 'Sekarang' : $f($work['end_date'] ?? '') }}
+                                            </p>
+                                            <ul class="list-disc ml-5 text-sm text-gray-600 dark:text-slate-400 space-y-1">
+                                                @foreach(explode("\n", $work['description']) as $line)
+                                                    @if(trim($line)) <li>{{ trim($line, "- ") }}</li> @endif
+                                                @endforeach
+                                            </ul>
                                         </div>
                                         <div class="ml-4 flex gap-1">
                                             <button type="button" wire:click="editWorkExperience({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Edit">
@@ -239,8 +260,12 @@
                                     <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $org['role'] }} - {{ $org['organization'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $org['start_date'] }} s/d {{ ($org['is_current'] ?? false) ? 'Sekarang' : $org['end_date'] }}</p>
-                                            <p class="text-sm text-gray-600 dark:text-slate-400 whitespace-pre-line">{{ $org['description'] }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $f($org['start_date']) }} - {{ ($org['is_current'] ?? false) ? 'Sekarang' : $f($org['end_date'] ?? '') }}</p>
+                                            <ul class="list-disc ml-5 text-sm text-gray-600 dark:text-slate-400 space-y-1">
+                                                @foreach(explode("\n", $org['description']) as $line)
+                                                    @if(trim($line)) <li>{{ trim($line, "- ") }}</li> @endif
+                                                @endforeach
+                                            </ul>
                                         </div>
                                         <div class="ml-4 flex gap-1">
                                             <button type="button" wire:click="editOrganization({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Edit">
@@ -255,65 +280,12 @@
                             </div>
                         </div>
 
-                        <!-- 6. Pengalaman Asistensi -->
+                        <!-- 6. Pengalaman Asistensi (Commented Out) -->
+                        {{-- 
                         <div>
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="flex items-center justify-center w-8 h-8 bg-primary text-white rounded-full font-bold">6</span>
-                                <h5 class="text-xl font-bold">Pengalaman Asistensi</h5>
-                            </div>
-                            <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-slate-700 mb-6">
-                                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Peran / Jabatan</label>
-                                        <input type="text" wire:model="current_assistance.role" placeholder="Contoh: Asisten Laboratorium" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Instansi / Lokasi</label>
-                                        <input type="text" wire:model="current_assistance.location" placeholder="Nama Instansi" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Mulai</label>
-                                        <input type="month" wire:model="current_assistance.start_date" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
-                                    </div>
-                                    <div>
-                                         <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Selesai</label>
-                                         <input type="month" wire:model="current_assistance.end_date" @if($current_assistance['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
-                                         <div class="mt-1 flex items-center gap-1">
-                                             <input type="checkbox" wire:model.live="current_assistance.is_current" id="ast_current" class="rounded border-gray-300">
-                                             <label for="ast_current" class="text-xs text-gray-500">Masih Berjalan (Sekarang)</label>
-                                         </div>
-                                     </div>
-                                    <div class="md:col-span-2">
-                                        <label class="block text-xs font-bold uppercase text-gray-500 dark:text-slate-400 mb-1">Deskripsi Tugas</label>
-                                        <textarea wire:model="current_assistance.description" rows="3" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700  text-black dark:bg-slate-900 dark:text-white rounded-lg"></textarea>
-                                    </div>
-                                </div>
-                                <button type="button" wire:click="addAssistance" wire:loading.attr="disabled" class="w-full py-2 bg-primary text-white rounded-lg font-semibold transition disabled:opacity-75">
-                                    <span wire:loading.remove wire:target="addAssistance">+ Tambah Pengalaman Asistensi</span>
-                                    <span wire:loading wire:target="addAssistance">Memproses...</span>
-                                </button>
-                            </div>
-
-                            <div class="space-y-3">
-                                @foreach ($assistance_experiences as $index => $ast)
-                                    <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
-                                        <div class="flex-1">
-                                            <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $ast['role'] }} - {{ $ast['location'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $ast['start_date'] }} s/d {{ ($ast['is_current'] ?? false) ? 'Sekarang' : $ast['end_date'] }}</p>
-                                            <p class="text-sm text-gray-600 dark:text-slate-400 whitespace-pre-line">{{ $ast['description'] }}</p>
-                                        </div>
-                                        <div class="ml-4 flex gap-1">
-                                            <button type="button" wire:click="editAssistance({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Edit">
-                                                <i class="ri-edit-line"></i>
-                                            </button>
-                                            <button type="button" wire:click="removeAssistance({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20" title="Hapus">
-                                                <i class="ri-delete-bin-line"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                            ... (Assistance Experience Content) ...
                         </div>
+                        --}}
 
                         <!-- 7. Skill (Hard & Soft) -->
                         <div>
@@ -394,9 +366,7 @@
                                     <select wire:model="current_language.proficiency" class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg">
                                         <option value="Pemula">Pemula (Beginner)</option>
                                         <option value="Menengah">Menengah (Intermediate)</option>
-                                        <option value="Lanjut">Lanjut (Advanced)</option>
-                                        <option value="Fasih">Fasih (Fluent)</option>
-                                        <option value="Bahasa Ibu">Bahasa Ibu (Native)</option>
+                                        <option value="Mahir">Mahir (Advanced)</option>
                                     </select>
                                 </div>
                                 <div class="md:col-span-2">

@@ -16,9 +16,9 @@ class DocumentStorageService
             \Illuminate\Support\Facades\Log::info('Saving CV PDF for user ' . $cv->user_id);
             $pdf = Pdf::loadView('pdf.cv-template', ['cv' => $cv]);
             $filename = 'CV_' . str_replace(' ', '_', $cv->full_name) . '_' . $cv->id . '.pdf';
-            $path = 'public/users/' . $cv->user_id . '/cvs/' . $filename;
+            $path = 'users/' . $cv->user_id . '/cvs/' . $filename;
             
-            Storage::put($path, $pdf->output());
+            Storage::disk('public')->put($path, $pdf->output());
             \Illuminate\Support\Facades\Log::info('CV PDF saved to: ' . $path);
             
             return $path;
@@ -39,9 +39,9 @@ class DocumentStorageService
             ]);
             
             $filename = 'Cover_Letter_' . str_replace(' ', '_', $cl->company_name) . '_' . $cl->id . '.pdf';
-            $path = 'public/users/' . $cl->user_id . '/cover_letters/' . $filename;
+            $path = 'users/' . $cl->user_id . '/cover_letters/' . $filename;
             
-            Storage::put($path, $pdf->output());
+            Storage::disk('public')->put($path, $pdf->output());
             \Illuminate\Support\Facades\Log::info('Cover Letter PDF saved to: ' . $path);
             
             return $path;
@@ -54,14 +54,14 @@ class DocumentStorageService
     public static function deleteCvFiles(Cv $cv)
     {
         try {
-            $directory = 'public/users/' . $cv->user_id . '/cvs/';
-            $files = Storage::files($directory);
+            $directory = 'users/' . $cv->user_id . '/cvs/';
+            $files = Storage::disk('public')->files($directory);
             $deletedCount = 0;
 
             foreach ($files as $file) {
                 // Check if file ends with _{id}.pdf
                 if (str_ends_with($file, '_' . $cv->id . '.pdf')) {
-                    Storage::delete($file);
+                    Storage::disk('public')->delete($file);
                     $deletedCount++;
                 }
             }
@@ -75,14 +75,14 @@ class DocumentStorageService
     public static function deleteCoverLetterFiles(CoverLetter $cl)
     {
         try {
-            $directory = 'public/users/' . $cl->user_id . '/cover_letters/';
-            $files = Storage::files($directory);
+            $directory = 'users/' . $cl->user_id . '/cover_letters/';
+            $files = Storage::disk('public')->files($directory);
             $deletedCount = 0;
 
             foreach ($files as $file) {
                 // Check if file ends with _{id}.pdf
                 if (str_ends_with($file, '_' . $cl->id . '.pdf')) {
-                    Storage::delete($file);
+                    Storage::disk('public')->delete($file);
                     $deletedCount++;
                 }
             }

@@ -12,6 +12,8 @@ use Livewire\Component;
 class CvPreview extends Component
 {
     public $cv;
+    public $pdfUrl;
+    public $hasPdf = false;
 
     public function mount($cvId)
     {
@@ -19,6 +21,14 @@ class CvPreview extends Component
 
         if ($this->cv->user_id !== auth()->id()) {
             abort(403);
+        }
+
+        $filename = 'CV_' . str_replace(' ', '_', $this->cv->full_name) . '_' . $this->cv->id . '.pdf';
+        $path = 'users/' . $this->cv->user_id . '/cvs/' . $filename;
+        
+        if (\Illuminate\Support\Facades\Storage::disk('public')->exists($path)) {
+            $this->hasPdf = true;
+            $this->pdfUrl = asset('storage/users/' . $this->cv->user_id . '/cvs/' . $filename) . '#toolbar=0&navpanes=0';
         }
     }
 

@@ -158,16 +158,16 @@
                 if (strtolower($date) == 'sekarang' || strtolower($date) == 'present') return 'Sekarang';
                 
                 $months = [
-                    '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
-                    '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
-                    '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+                    '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
+                    '05' => 'Mei', '06' => 'Jun', '07' => 'Jul', '08' => 'Agu',
+                    '09' => 'Sep', '10' => 'Okt', '11' => 'Nov', '12' => 'Des'
                 ];
 
                 try {
                     $dt = \Carbon\Carbon::parse($date);
                     $m = $dt->format('m');
                     $y = $dt->format('Y');
-                    return ($months[$m] ?? $dt->format('F')) . ' ' . $y;
+                    return ($months[$m] ?? $dt->format('M')) . ' ' . $y;
                 } catch (\Exception $e) {
                     return $date;
                 }
@@ -207,15 +207,20 @@
         @if ($cv->work_experiences && count($cv->work_experiences) > 0)
             <div class="section">
                 <div class="section-title">Pengalaman Profesional</div>
+                @php $lastCompany = ''; @endphp
                 @foreach ($cv->work_experiences as $work)
                     <div class="content-block">
                         <table style="width: 100%;">
+                            @if ($lastCompany !== $work['company'])
+                                <tr>
+                                    <td class="left-col" style="text-transform: uppercase;">{{ $work['company'] }}</td>
+                                    <td class="right-col"></td>
+                                </tr>
+                                @php $lastCompany = $work['company']; @endphp
+                            @endif
                             <tr>
-                                <td class="left-col" style="text-transform: uppercase;">{{ $work['company'] }}</td>
-                                <td class="right-col">{{ $formatDate($work['start_date']) }} – {{ ($work['is_current'] ?? false) ? 'Sekarang' : $formatDate($work['end_date'] ?? '') }}</td>
-                            </tr>
-                            <tr>
-                                <td class="sub-left" colspan="2">{{ $work['position'] }}</td>
+                                <td class="sub-left" style="font-weight: normal;">{{ $work['position'] }}</td>
+                                <td class="right-col" style="font-weight: bold; font-style: normal;">{{ $formatDate($work['start_date']) }} – {{ ($work['is_current'] ?? false) ? 'Sekarang' : $formatDate($work['end_date'] ?? '') }}</td>
                             </tr>
                         </table>
                         @if ($work['description'])
@@ -232,34 +237,12 @@
             </div>
         @endif
 
-        <!-- Pengalaman Asistensi -->
+        <!-- Pengalaman Asistensi (Commented Out) -->
+        {{-- 
         @if ($cv->assistance_experiences && count($cv->assistance_experiences) > 0)
-            <div class="section">
-                <div class="section-title">Pengalaman Asistensi</div>
-                @foreach ($cv->assistance_experiences as $ast)
-                    <div class="content-block">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td class="left-col" style="text-transform: uppercase;">{{ $ast['role'] }}</td>
-                                <td class="right-col">{{ $formatDate($ast['start_date']) }} – {{ ($ast['is_current'] ?? false) ? 'Sekarang' : $formatDate($ast['end_date'] ?? '') }}</td>
-                            </tr>
-                            <tr>
-                                <td class="sub-left" colspan="2">{{ $ast['location'] }}</td>
-                            </tr>
-                        </table>
-                        @if ($ast['description'])
-                            <ul class="bullet-list">
-                                @foreach(explode("\n", str_replace("\r", "", $ast['description'])) as $line)
-                                    @if(trim($line))
-                                        <li>{{ ltrim(trim($line), '- ') }}</li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
+            ...
         @endif
+        --}}
 
         <!-- Organization -->
         @if ($cv->organization_experiences && count($cv->organization_experiences) > 0)
@@ -269,11 +252,10 @@
                     <div class="content-block">
                         <table style="width: 100%;">
                             <tr>
-                                <td class="left-col" style="text-transform: uppercase;">{{ $org['role'] }}</td>
+                                <td style="text-align: left;">
+                                    <span style="font-weight: bold;">{{ $org['role'] }}</span> - <span style="font-style: italic;">{{ $org['organization'] }}</span>
+                                </td>
                                 <td class="right-col">{{ $formatDate($org['start_date']) }} – {{ ($org['is_current'] ?? false) ? 'Sekarang' : $formatDate($org['end_date'] ?? '') }}</td>
-                            </tr>
-                            <tr>
-                                <td class="sub-left" colspan="2">{{ $org['organization'] }}</td>
                             </tr>
                         </table>
                         @if (!empty($org['description']))

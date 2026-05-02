@@ -266,7 +266,7 @@ class CvForm extends Component
             $this->languages[] = $this->current_language;
             $this->current_language = [
                 'language' => '',
-                'proficiency' => 'Intermediate',
+                'proficiency' => 'Menengah',
             ];
         }
     }
