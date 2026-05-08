@@ -35,7 +35,7 @@
                         <img src="{{ asset('logo.svg') }}" class="logo-lg" style="height: 50px;" alt="Dark logo">
                         <img src="{{ asset('logo.svg') }}" class="logo-sm" style="height: 50px;" alt="Small logo">
                     </div>
-                    <span class="text-white text-2xl font-bold ml-5 mt-1">Karivio</span>
+                    <span class="logo-lg text-white text-2xl font-bold ml-5 mt-1">Karivio</span>
                 </a>
 
                 <!-- Sidenav Menu Toggle Button -->
