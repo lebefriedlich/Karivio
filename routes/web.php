@@ -11,6 +11,14 @@ use App\Livewire\Pages\FileManagement;
 use App\Livewire\Pages\EmailList;
 use App\Livewire\Pages\SendEmail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
+Route::get('/locale/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('locale.switch');
 
 use App\Http\Controllers\Auth\GoogleController;
 

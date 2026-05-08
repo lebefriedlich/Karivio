@@ -52,7 +52,7 @@
                                 <span class="menu-icon">
                                     <i class="ri-home-4-line"></i>
                                 </span>
-                                <span class="menu-text"> Beranda </span>
+                                <span class="menu-text"> {{ __('Beranda') }} </span>
                             </a>
                         </li>
                         <li class="menu-item">
@@ -60,7 +60,7 @@
                                 <span class="menu-icon">
                                     <i class="ri-folder-open-line"></i>
                                 </span>
-                                <span class="menu-text"> File Saya </span>
+                                <span class="menu-text"> {{ __('File Saya') }} </span>
                             </a>
                         </li>
                         <li class="menu-item">
@@ -68,7 +68,7 @@
                                 <span class="menu-icon">
                                     <i class="ri-mail-send-line"></i>
                                 </span>
-                                <span class="menu-text"> Kirim Email </span>
+                                <span class="menu-text"> {{ __('Kirim Email') }} </span>
                             </a>
                         </li>
                         <li class="menu-item">
@@ -76,7 +76,7 @@
                                 <span class="menu-icon">
                                     <i class="ri-file-list-3-line"></i>
                                 </span>
-                                <span class="menu-text"> CV Saya </span>
+                                <span class="menu-text"> {{ __('CV Saya') }} </span>
                             </a>
                         </li>
                         <li class="menu-item">
@@ -84,7 +84,7 @@
                                 <span class="menu-icon">
                                     <i class="ri-mail-line"></i>
                                 </span>
-                                <span class="menu-text"> Cover Letter </span>
+                                <span class="menu-text"> {{ __('Cover Letter') }} </span>
                             </a>
                         </li>
                     </ul>
@@ -146,6 +146,24 @@
                         </button>
                     </div>
 
+                    <!-- Language Toggle -->
+                    <div class="relative flex">
+                        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link p-2">
+                            <span class="flex items-center justify-center">
+                                <i class="ri-global-line text-2xl"></i>
+                                <span class="ms-1 text-xs font-bold uppercase">{{ app()->getLocale() }}</span>
+                            </span>
+                        </button>
+                        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-32 z-50 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+                            <a href="{{ route('locale.switch', 'id') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 {{ app()->getLocale() == 'id' ? 'bg-primary/10 font-bold' : '' }}">
+                                <span>🇮🇩 Indonesia</span>
+                            </a>
+                            <a href="{{ route('locale.switch', 'en') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 {{ app()->getLocale() == 'en' ? 'bg-primary/10 font-bold' : '' }}">
+                                <span>🇺🇸 English</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <!-- Fullscreen Toggle Button -->
                     <div class="relative lg:flex hidden">
                         <button data-toggle="fullscreen" type="button" class="nav-link p-2">
@@ -175,14 +193,14 @@
 
                         <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
                             <!-- item-->
-                            <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">Selamat Datang !</h6>
+                            <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">{{ __('Selamat Datang !') }}</h6>
 
                             <!-- item-->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="flex w-full items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                                     <i class="ri-logout-box-line text-lg align-middle"></i>
-                                    <span>Keluar</span>
+                                    <span>{{ __('Keluar') }}</span>
                                 </button>
                             </form>
                         </div>

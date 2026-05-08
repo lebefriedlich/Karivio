@@ -32,7 +32,8 @@ class FileManagement extends Component
                     'route_edit' => route('cv.form', $cv->id),
                     'route_export' => route('cv.export-pdf', $cv->id),
                     'icon' => 'ri-file-user-line',
-                    'color' => 'indigo'
+                    'color' => 'indigo',
+                    'language' => $cv->language ?? 'id'
                 ];
             });
 

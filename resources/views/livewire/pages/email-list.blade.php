@@ -2,13 +2,13 @@
     <!-- Page Header -->
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">📧 Riwayat Pengiriman Email</h4>
-            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Pantau semua lamaran yang telah Anda kirim via Gmail.</p>
+            <h4 class="text-slate-900 dark:text-slate-200 text-2xl font-bold tracking-tight">📧 {{ __('Riwayat Pengiriman Email') }}</h4>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">{{ __('Pantau semua lamaran yang telah Anda kirim via Gmail.') }}</p>
         </div>
 
         <div class="flex items-center gap-3">
             <a href="{{ route('send-email', ['type' => 'compose', 'id' => 'new']) }}" class="btn bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/20 px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all">
-                <i class="ri-mail-add-line text-lg"></i> Tulis Email Baru
+                <i class="ri-mail-add-line text-lg"></i> {{ __('Tulis Email Baru') }}
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
                     <i class="ri-mail-line text-2xl"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Terkirim</p>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{ __('Total Terkirim') }}</p>
                     <p class="text-2xl font-black text-slate-900 dark:text-white">{{ \App\Models\EmailLog::where('user_id', auth()->id())->where('status', 'sent')->count() }}</p>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <i class="ri-time-line text-2xl"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Dalam Antrean</p>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{ __('Dalam Antrean') }}</p>
                     <p class="text-2xl font-black text-slate-900 dark:text-white">{{ \App\Models\EmailLog::where('user_id', auth()->id())->where('status', 'pending')->count() }}</p>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <i class="ri-error-warning-line text-2xl"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Gagal</p>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{ __('Gagal') }}</p>
                     <p class="text-2xl font-black text-slate-900 dark:text-white">{{ \App\Models\EmailLog::where('user_id', auth()->id())->where('status', 'failed')->count() }}</p>
                 </div>
             </div>
@@ -56,12 +56,12 @@
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-slate-50 dark:bg-slate-900/50">
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Waktu Pengiriman</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Penerima</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Subjek</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Lampiran</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Status</th>
-                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Aksi</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">{{ __('Waktu Pengiriman') }}</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">{{ __('Penerima') }}</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">{{ __('Subjek') }}</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">{{ __('Lampiran') }}</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">{{ __('Status') }}</th>
+                        <th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">{{ __('Aksi') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
@@ -91,20 +91,20 @@
                             <td class="p-4 text-center">
                                 @if($log->status === 'sent')
                                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Terkirim
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> {{ __('Terkirim') }}
                                     </span>
                                 @elseif($log->status === 'failed')
                                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wider" title="{{ $log->error_message }}">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Gagal
+                                        <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> {{ __('Gagal') }}
                                     </span>
                                 @else
                                     @if($log->scheduled_at && $log->scheduled_at->isFuture())
                                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-wider" title="Dijadwalkan pada {{ $log->scheduled_at->format('d M Y H:i') }}">
-                                            <i class="ri-time-line text-amber-500"></i> Terjadwal
+                                            <i class="ri-time-line text-amber-500"></i> {{ __('Terjadwal') }}
                                         </span>
                                     @else
                                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider animate-pulse">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Antrean
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> {{ __('Antrean') }}
                                         </span>
                                     @endif
                                 @endif
@@ -112,11 +112,11 @@
                             <td class="p-4 text-center">
                                 @if($log->status === 'failed')
                                     <button wire:click="retry('{{ $log->id }}')" class="btn btn-sm" style="background-color: #2563eb; color: #ffffff; border: none; font-size: 10px; padding: 4px 10px; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                        <i class="ri-refresh-line" style="margin-right: 8px;"></i> Kirim Ulang
+                                        <i class="ri-refresh-line" style="margin-right: 8px;"></i> {{ __('Kirim Ulang') }}
                                     </button>
                                 @elseif($log->status === 'pending')
                                     <button wire:click="cancel('{{ $log->id }}')" class="btn btn-sm" style="background-color: #dc2626; color: #ffffff; border: none; font-size: 10px; padding: 4px 10px; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                        <i class="ri-close-circle-line" style="margin-right: 8px;"></i> Batalkan
+                                        <i class="ri-close-circle-line" style="margin-right: 8px;"></i> {{ __('Batalkan') }}
                                     </button>
                                 @endif
                             </td>
@@ -128,8 +128,8 @@
                                     <div class="w-20 h-20 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center text-slate-300 mb-4">
                                         <i class="ri-mail-open-line text-4xl"></i>
                                     </div>
-                                    <p class="text-slate-500 font-medium">Belum ada riwayat email.</p>
-                                    <p class="text-slate-400 text-xs mt-1">Mulai kirim lamaran Anda sekarang!</p>
+                                    <p class="text-slate-500 font-medium">{{ __('Belum ada riwayat email.') }}</p>
+                                    <p class="text-slate-400 text-xs mt-1">{{ __('Mulai kirim lamaran Anda sekarang!') }}</p>
                                 </div>
                             </td>
                         </tr>

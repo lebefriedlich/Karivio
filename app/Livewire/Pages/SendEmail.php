@@ -74,6 +74,7 @@ class SendEmail extends Component
                 'real_id' => $cv->id,
                 'type' => 'cv',
                 'name' => 'CV - ' . $cv->full_name,
+                'language' => $cv->language ?? 'id',
                 'path' => 'users/' . Auth::id() . '/cvs/CV_' . str_replace(' ', '_', $cv->full_name) . '_' . $cv->id . '.pdf'
             ];
         });

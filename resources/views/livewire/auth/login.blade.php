@@ -184,8 +184,8 @@
 
                     <div class="p-9">
                         <div class="text-center mx-auto w-3/4">
-                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-white mb-2">Masuk</h4>
-                            <p class="text-gray-400 mb-9">Silakan masuk menggunakan akun Google Anda untuk mengakses dashboard.</p>
+                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-white mb-2">{{ __('Masuk') }}</h4>
+                            <p class="text-gray-400 mb-9">{{ __('Silakan masuk menggunakan akun Google Anda untuk mengakses dashboard.') }}</p>
                         </div>
 
                         <div class="text-center">
@@ -197,7 +197,7 @@
                                     <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                                     <path fill="none" d="M0 0h48v48H0z"/>
                                 </svg>
-                                Masuk dengan Google
+                                {{ __('Masuk dengan Google') }}
                             </a>
                         </div>
                     </div>
@@ -207,10 +207,22 @@
                 <div class="text-center my-4">
                     <p class="text-muted">
                         Karivio &copy; {{ date('Y') }} | 
-                        <a href="{{ route('privacy') }}" class="hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-all underline">Privacy Policy</a>
+                        <a href="{{ route('privacy') }}" class="hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-all underline">{{ __('Privacy Policy') }}</a>
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Floating Language Toggle for Login -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <div class="flex gap-2 bg-white dark:bg-slate-800 p-2 rounded-full shadow-lg border border-slate-200 dark:border-slate-700">
+            <a href="{{ route('locale.switch', 'id') }}" class="w-10 h-10 flex items-center justify-center rounded-full transition-all {{ app()->getLocale() == 'id' ? 'bg-primary text-white' : 'hover:bg-slate-100 dark:hover:bg-slate-700' }}" title="Indonesia">
+                ID
+            </a>
+            <a href="{{ route('locale.switch', 'en') }}" class="w-10 h-10 flex items-center justify-center rounded-full transition-all {{ app()->getLocale() == 'en' ? 'bg-primary text-white' : 'hover:bg-slate-100 dark:hover:bg-slate-700' }}" title="English">
+                EN
+            </a>
         </div>
     </div>
 
