@@ -143,41 +143,78 @@
                 {{ $cv->phone }} | 
                 <a href="mailto:{{ $cv->email }}">{{ $cv->email }}</a> | 
                 @if ($cv->linkedin_url)
-                    <a href="{{ $cv->linkedin_url }}">Linkedin Profil</a> | 
+                    <a href="{{ $cv->linkedin_url }}">{{ $cv->language === 'en' ? 'LinkedIn Profile' : 'Linkedin Profil' }}</a> | 
                 @endif
                 @if ($cv->portfolio_url)
-                    <a href="{{ $cv->portfolio_url }}">Portofolio</a> | 
+                    <a href="{{ $cv->portfolio_url }}">{{ $cv->language === 'en' ? 'Portfolio' : 'Portofolio' }}</a> | 
                 @endif
                 {{ $cv->location }}
             </div>
         </div>
 
         @php
-            $formatDate = function($date) {
+            $lang = $cv->language ?? 'id';
+            
+            $formatDate = function($date) use ($lang) {
                 if (!$date) return '';
-                if (strtolower($date) == 'sekarang' || strtolower($date) == 'present') return 'Sekarang';
+                if (strtolower($date) == 'sekarang' || strtolower($date) == 'present') {
+                    return $lang === 'en' ? 'Present' : 'Sekarang';
+                }
                 
-                $months = [
+                $monthsId = [
                     '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
                     '05' => 'Mei', '06' => 'Jun', '07' => 'Jul', '08' => 'Agu',
                     '09' => 'Sep', '10' => 'Okt', '11' => 'Nov', '12' => 'Des'
+                ];
+                $monthsEn = [
+                    '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
+                    '05' => 'May', '06' => 'Jun', '07' => 'Jul', '08' => 'Aug',
+                    '09' => 'Sep', '10' => 'Oct', '11' => 'Nov', '12' => 'Dec'
                 ];
 
                 try {
                     $dt = \Carbon\Carbon::parse($date);
                     $m = $dt->format('m');
                     $y = $dt->format('Y');
+                    $months = $lang === 'en' ? $monthsEn : $monthsId;
                     return ($months[$m] ?? $dt->format('M')) . ' ' . $y;
                 } catch (\Exception $e) {
                     return $date;
                 }
             };
+
+            $labels = [
+                'id' => [
+                    'profile' => 'Profil',
+                    'education' => 'Pendidikan',
+                    'work' => 'Pengalaman Profesional',
+                    'org' => 'Pengalaman Organisasi',
+                    'skills' => 'SKILLS',
+                    'hard' => 'Hard Skill',
+                    'soft' => 'Soft Skill',
+                    'lang' => 'Bahasa',
+                    'present' => 'Sekarang',
+                ],
+                'en' => [
+                    'profile' => 'Profile',
+                    'education' => 'Education',
+                    'work' => 'Professional Experience',
+                    'org' => 'Organizational Experience',
+                    'skills' => 'SKILLS',
+                    'hard' => 'Hard Skills',
+                    'soft' => 'Soft Skills',
+                    'lang' => 'Languages',
+                    'present' => 'Present',
+                ]
+            ];
+            
+            $t = $labels[$lang] ?? $labels['id'];
         @endphp
 
         <!-- Profil -->
         @if ($cv->professional_summary)
             <div class="section">
-                <div class="section-title">Profil</div>
+                <div class="section-title">{{ $t['profile'] }}</div>
                 <div class="description-text">{{ $cv->professional_summary }}</div>
             </div>
         @endif
@@ -185,13 +222,13 @@
         <!-- Pendidikan -->
         @if ($cv->education && count($cv->education) > 0)
             <div class="section">
-                <div class="section-title">Pendidikan</div>
+                <div class="section-title">{{ $t['education'] }}</div>
                 @foreach ($cv->education as $edu)
                     <div class="content-block">
                         <table style="width: 100%;">
                             <tr>
                                 <td class="left-col">{{ $edu['institution'] ?? '' }}</td>
-                                <td class="right-col">{{ $formatDate($edu['start_date'] ?? '') }} – {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $formatDate($edu['end_date'] ?? '') }}</td>
+                                <td class="right-col">{{ $formatDate($edu['start_date'] ?? '') }} – {{ ($edu['is_current'] ?? false) ? $t['present'] : $formatDate($edu['end_date'] ?? '') }}</td>
                             </tr>
                             <tr>
                                 <td class="sub-left">{{ $edu['major'] ?? '' }}</td>
@@ -206,7 +243,7 @@
         <!-- Pengalaman Profesional -->
         @if ($cv->work_experiences && count($cv->work_experiences) > 0)
             <div class="section">
-                <div class="section-title">Pengalaman Profesional</div>
+                <div class="section-title">{{ $t['work'] }}</div>
                 @php $lastCompany = ''; @endphp
                 @foreach ($cv->work_experiences as $work)
                     <div class="content-block">
@@ -220,7 +257,7 @@
                             @endif
                             <tr>
                                 <td class="sub-left" style="font-weight: normal;">{{ $work['position'] }}</td>
-                                <td class="right-col" style="font-weight: bold; font-style: normal;">{{ $formatDate($work['start_date']) }} – {{ ($work['is_current'] ?? false) ? 'Sekarang' : $formatDate($work['end_date'] ?? '') }}</td>
+                                <td class="right-col" style="font-weight: bold; font-style: normal;">{{ $formatDate($work['start_date']) }} – {{ ($work['is_current'] ?? false) ? $t['present'] : $formatDate($work['end_date'] ?? '') }}</td>
                             </tr>
                         </table>
                         @if ($work['description'])
@@ -247,7 +284,7 @@
         <!-- Organization -->
         @if ($cv->organization_experiences && count($cv->organization_experiences) > 0)
             <div class="section">
-                <div class="section-title">Pengalaman Organisasi</div>
+                <div class="section-title">{{ $t['org'] }}</div>
                 @foreach ($cv->organization_experiences as $org)
                     <div class="content-block">
                         <table style="width: 100%;">
@@ -255,7 +292,7 @@
                                 <td style="text-align: left;">
                                     <span style="font-weight: bold;">{{ $org['role'] }}</span> - <span style="font-style: italic;">{{ $org['organization'] }}</span>
                                 </td>
-                                <td class="right-col">{{ $formatDate($org['start_date']) }} – {{ ($org['is_current'] ?? false) ? 'Sekarang' : $formatDate($org['end_date'] ?? '') }}</td>
+                                <td class="right-col">{{ $formatDate($org['start_date']) }} – {{ ($org['is_current'] ?? false) ? $t['present'] : $formatDate($org['end_date'] ?? '') }}</td>
                             </tr>
                         </table>
                         @if (!empty($org['description']))
@@ -281,12 +318,12 @@
 
         @if ($hasSkills)
             <div class="section">
-                <div class="section-title">SKILLS</div>
+                <div class="section-title">{{ $t['skills'] }}</div>
                 <table style="width: 100%; border: none;">
                     <tr>
                         <td style="width: 60%; padding-right: 15pt;">
                                 @if (count($techSkills) > 0)
-                                    <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 4pt; font-size: 10pt;">Hard Skill</div>
+                                    <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 4pt; font-size: 10pt;">{{ $t['hard'] }}</div>
                                     <ul class="bullet-list" style="margin-top: 0;">
                                         @foreach ($techSkills as $skill)
                                             <li>
@@ -302,7 +339,7 @@
                         </td>
                         <td style="width: 40%;">
                                 @if (count($softSkills) > 0)
-                                    <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 4pt; font-size: 10pt;">Soft Skill</div>
+                                    <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 4pt; font-size: 10pt;">{{ $t['soft'] }}</div>
                                     <ul class="bullet-list" style="margin-top: 0;">
                                         @foreach ($softSkills as $skill)
                                             <li>{{ $skill }}</li>
@@ -311,7 +348,7 @@
                                 @endif
 
                                 @if ($cv->languages && count($cv->languages) > 0)
-                                    <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 4pt; font-size: 10pt;">Bahasa</div>
+                                    <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 4pt; font-size: 10pt;">{{ $t['lang'] }}</div>
                                     <ul class="bullet-list" style="margin-top: 0;">
                                         @foreach ($cv->languages as $lang)
                                             <li>{{ $lang['language'] }} ({{ $lang['proficiency'] }})</li>

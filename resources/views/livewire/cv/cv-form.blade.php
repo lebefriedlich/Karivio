@@ -1,15 +1,21 @@
 <main class="p-6">
     @php
-        $months = [
+        $monthsId = [
             '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
             '05' => 'Mei', '06' => 'Jun', '07' => 'Jul', '08' => 'Agu',
             '09' => 'Sep', '10' => 'Okt', '11' => 'Nov', '12' => 'Des'
         ];
+        $monthsEn = [
+            '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
+            '05' => 'May', '06' => 'Jun', '07' => 'Jul', '08' => 'Aug',
+            '09' => 'Sep', '10' => 'Oct', '11' => 'Nov', '12' => 'Dec'
+        ];
 
-        $f = function($d) use ($months) {
+        $f = function($d) use ($monthsId, $monthsEn, $language) {
             if(!$d) return '';
             try {
                 $dt = \Carbon\Carbon::parse($d);
+                $months = $language === 'en' ? $monthsEn : $monthsId;
                 return ($months[$dt->format('m')] ?? $dt->format('M')) . ' ' . $dt->format('Y');
             } catch(\Exception $e) { return $d; }
         };
@@ -44,6 +50,21 @@
 
 
                     <form wire:submit="saveCv" class="space-y-12">
+                        <!-- Language Selection -->
+                        <div class="bg-primary/5 p-6 rounded-2xl border border-primary/10 mb-8">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div>
+                                    <h5 class="text-lg font-bold text-primary">Bahasa CV / CV Language</h5>
+                                    <p class="text-sm text-slate-500">Pilih bahasa untuk label dan format tanggal / Choose language for labels and dates</p>
+                                </div>
+                                <div class="w-full md:w-64">
+                                    <select wire:model.live="language" class="w-full px-4 py-3 border border-primary/20 bg-white dark:bg-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-primary font-bold">
+                                        <option value="id">Bahasa Indonesia</option>
+                                        <option value="en">English</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <!-- 1. Identitas Diri -->
                         <div>
                             <div class="flex items-center gap-2 mb-6">
@@ -119,7 +140,7 @@
                                          <input type="month" wire:model="current_education.end_date" @if($current_education['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
                                          <div class="mt-1 flex items-center gap-1">
                                              <input type="checkbox" wire:model.live="current_education.is_current" id="edu_current" class="rounded border-gray-300">
-                                             <label for="edu_current" class="text-xs text-gray-500">Masih Berjalan (Sekarang)</label>
+                                             <label for="edu_current" class="text-xs text-gray-500">{{ $language === 'en' ? 'Present' : 'Masih Berjalan (Sekarang)' }}</label>
                                          </div>
                                      </div>
                                 </div>
@@ -135,7 +156,7 @@
                                         <div>
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $edu['institution'] }}</h6>
                                             <p class="text-sm text-gray-600 dark:text-slate-400">{{ $edu['major'] }} • {{ $edu['score'] }}</p>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500">{{ $f($edu['start_date']) }} - {{ ($edu['is_current'] ?? false) ? 'Sekarang' : $f($edu['end_date'] ?? '') }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500">{{ $f($edu['start_date']) }} - {{ ($edu['is_current'] ?? false) ? ($language === 'en' ? 'Present' : 'Sekarang') : $f($edu['end_date'] ?? '') }}</p>
                                         </div>
                                         <div class="flex gap-1">
                                             <button type="button" wire:click="editEducation({{ $index }})" class="w-8 h-8 flex items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Edit">
@@ -175,7 +196,7 @@
                                          <input type="month" wire:model="current_work.end_date" @if($current_work['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
                                          <div class="mt-1 flex items-center gap-1">
                                              <input type="checkbox" wire:model.live="current_work.is_current" id="work_current" class="rounded border-gray-300">
-                                             <label for="work_current" class="text-xs text-gray-500">Masih Bekerja (Sekarang)</label>
+                                             <label for="work_current" class="text-xs text-gray-500">{{ $language === 'en' ? 'Present' : 'Masih Bekerja (Sekarang)' }}</label>
                                          </div>
                                      </div>
                                     <div class="md:col-span-2">
@@ -195,7 +216,7 @@
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $work['position'] }} di {{ $work['company'] }}</h6>
                                             <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">
-                                                {{ $f($work['start_date']) }} - {{ ($work['is_current'] ?? false) ? 'Sekarang' : $f($work['end_date'] ?? '') }}
+                                                {{ $f($work['start_date']) }} - {{ ($work['is_current'] ?? false) ? ($language === 'en' ? 'Present' : 'Sekarang') : $f($work['end_date'] ?? '') }}
                                             </p>
                                             <ul class="list-disc ml-5 text-sm text-gray-600 dark:text-slate-400 space-y-1">
                                                 @foreach(explode("\n", $work['description']) as $line)
@@ -241,7 +262,7 @@
                                          <input type="month" wire:model="current_org.end_date" @if($current_org['is_current'] ?? false) disabled @endif class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg text-sm disabled:opacity-50">
                                          <div class="mt-1 flex items-center gap-1">
                                              <input type="checkbox" wire:model.live="current_org.is_current" id="org_current" class="rounded border-gray-300">
-                                             <label for="org_current" class="text-xs text-gray-500">Masih Berjalan (Sekarang)</label>
+                                             <label for="org_current" class="text-xs text-gray-500">{{ $language === 'en' ? 'Present' : 'Masih Berjalan (Sekarang)' }}</label>
                                          </div>
                                      </div>
                                     <div class="md:col-span-2">
@@ -260,7 +281,7 @@
                                     <div class="border border-gray-200 dark:border-gray-900 rounded-lg p-4 flex justify-between items-start group hover:border-primary transition">
                                         <div class="flex-1">
                                             <h6 class="font-bold text-gray-800 dark:text-slate-200">{{ $org['role'] }} - {{ $org['organization'] }}</h6>
-                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $f($org['start_date']) }} - {{ ($org['is_current'] ?? false) ? 'Sekarang' : $f($org['end_date'] ?? '') }}</p>
+                                            <p class="text-xs text-gray-400 dark:text-slate-500 mb-2">{{ $f($org['start_date']) }} - {{ ($org['is_current'] ?? false) ? ($language === 'en' ? 'Present' : 'Sekarang') : $f($org['end_date'] ?? '') }}</p>
                                             <ul class="list-disc ml-5 text-sm text-gray-600 dark:text-slate-400 space-y-1">
                                                 @foreach(explode("\n", $org['description']) as $line)
                                                     @if(trim($line)) <li>{{ trim($line, "- ") }}</li> @endif

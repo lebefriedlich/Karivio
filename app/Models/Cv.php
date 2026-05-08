@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Table('cvs')]
 #[Fillable([
     'user_id',
+    'language',
     'full_name',
     'email',
     'phone',

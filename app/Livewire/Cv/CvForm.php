@@ -23,6 +23,7 @@ class CvForm extends Component
     public $professional_summary = '';
     public $linkedin_url = '';
     public $portfolio_url = '';
+    public $language = 'id';
 
     // Pengalaman Profesional
     public $work_experiences = [];
@@ -109,6 +110,7 @@ class CvForm extends Component
                 $this->professional_summary = $cv->professional_summary;
                 $this->linkedin_url = $cv->linkedin_url;
                 $this->portfolio_url = $cv->portfolio_url;
+                $this->language = $cv->language ?? 'id';
                 $this->work_experiences = $cv->work_experiences ?? [];
                 
                 // Normalisasi Hard Skills (handle data lama string vs data baru object)
@@ -330,6 +332,7 @@ class CvForm extends Component
             'professional_summary' => $this->professional_summary,
             'linkedin_url' => $this->linkedin_url,
             'portfolio_url' => $this->portfolio_url,
+            'language' => $this->language,
             'work_experiences' => $this->work_experiences,
             'technical_skills' => $this->hard_skills,
             'soft_skills' => $this->soft_skills,
