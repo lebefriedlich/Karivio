@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
         @page {
             margin: 0;
         }
+
         body {
             margin: 1.27cm 1cm 1.27cm 1.27cm;
             font-family: 'Times New Roman', Times, serif;
@@ -15,47 +17,59 @@
             line-height: 1.15;
             color: #000;
         }
+
         .header {
             text-align: right;
             margin-bottom: 30pt;
         }
+
         .header .name {
             font-weight: bold;
             font-size: 12pt;
             text-transform: capitalize;
         }
+
         .date-place {
             margin-bottom: 20pt;
         }
+
         .recipient {
             margin-bottom: 15pt;
         }
+
         .recipient .bold {
             font-weight: bold;
         }
+
         .content {
             text-align: justify;
         }
+
         .content p {
             margin: 0 0 10pt 0;
             text-align: justify;
         }
+
         .signature {
             margin-top: 20pt;
         }
+
         a {
             color: #000;
             text-decoration: none;
         }
+
         .phone-link {
             color: black;
         }
+
         .email-link {
             color: blue;
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <div class="name">{{ $coverLetter->full_name }}</div>
@@ -64,25 +78,32 @@
     </div>
 
     <div class="date-place">
-        {{ $coverLetter->city }}, {{ \Carbon\Carbon::parse($coverLetter->date)->translatedFormat('d F Y') }}
+        {{ $coverLetter->city }},
+        {{ \Carbon\Carbon::parse($coverLetter->date)->locale($coverLetter->language ?? 'id')->translatedFormat('d F Y') }}
     </div>
 
     <div class="recipient">
-        Kepada Yth.<br>
-        Tim Rekrutmen<br>
+        @if(($coverLetter->language ?? 'id') == 'en')
+            To,<br>
+            Recruitment Team<br>
+        @else
+            Kepada Yth.<br>
+            Tim Rekrutmen<br>
+        @endif
         <span class="bold">{{ $coverLetter->company_name }}</span><br>
-        {{ $coverLetter->company_address }}
+        <span class="bold">{{ $coverLetter->company_address }}</span>
     </div>
 
     <div class="content">
         @php
-            $bodyText = str_replace('Dengan hormat,', '<div style="text-align: left; margin-bottom: 10pt;">Dengan hormat,</div>', $body);
+            $greeting = ($coverLetter->language ?? 'id') == 'en' ? 'Dear Hiring Manager,' : 'Dengan hormat,';
+            $bodyText = str_replace($greeting, '<div style="text-align: left; margin-bottom: 10pt;">' . $greeting . '</div>', $body);
             $paragraphs = explode("\n", $bodyText);
-            foreach($paragraphs as $p) {
+            foreach ($paragraphs as $p) {
                 $p = trim($p);
                 if (!empty($p)) {
                     if (strpos($p, '<div') !== false) {
-                        echo $p; // Don't wrap the "Dengan hormat" div in a p tag
+                        echo $p;
                     } else {
                         echo '<p>' . $p . '</p>';
                     }
@@ -92,8 +113,13 @@
     </div>
 
     <div class="signature">
-        Hormat Saya,<br><br><br><br>
+        @if(($coverLetter->language ?? 'id') == 'en')
+            Sincerely,<br><br><br><br>
+        @else
+            Hormat Saya,<br><br><br><br>
+        @endif
         <strong>{{ $coverLetter->full_name }}</strong>
     </div>
 </body>
+
 </html>

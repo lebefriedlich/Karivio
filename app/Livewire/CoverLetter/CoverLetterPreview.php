@@ -14,6 +14,8 @@ class CoverLetterPreview extends Component
 {
     public $coverLetter;
     public $processedContent;
+    public $pdfUrl;
+    public $hasPdf = false;
 
     public function mount($id)
     {
@@ -21,20 +23,35 @@ class CoverLetterPreview extends Component
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
-        $this->processedContent = $this->processTemplate($this->coverLetter->content);
+        $this->processedContent = $this->coverLetter->getProcessedContent();
+
+        $filename = 'Cover_Letter_' . str_replace(' ', '_', $this->coverLetter->company_name) . '_' . $this->coverLetter->id . '.pdf';
+        $path = 'users/' . $this->coverLetter->user_id . '/cover_letters/' . $filename;
+        
+        if (\Illuminate\Support\Facades\Storage::disk('public')->exists($path)) {
+            $this->hasPdf = true;
+            $this->pdfUrl = asset('storage/users/' . $this->coverLetter->user_id . '/cover_letters/' . $filename) . '#toolbar=0&navpanes=0';
+        }
     }
 
     private function processTemplate($content)
     {
         $placeholders = [
             '{{ Nama Lengkap }}' => $this->coverLetter->full_name,
+            '{{ Full Name }}' => $this->coverLetter->full_name,
             '{{ Telepon }}' => $this->coverLetter->phone,
+            '{{ Phone }}' => $this->coverLetter->phone,
             '{{ Email }}' => $this->coverLetter->email,
             '{{ Kota }}' => $this->coverLetter->city,
+            '{{ City }}' => $this->coverLetter->city,
             '{{ Tanggal }}' => $this->formatDate($this->coverLetter->date),
+            '{{ Date }}' => $this->formatDate($this->coverLetter->date),
             '{{ Nama Perusahaan }}' => $this->coverLetter->company_name,
+            '{{ Company Name }}' => $this->coverLetter->company_name,
             '{{ Alamat Perusahaan }}' => $this->coverLetter->company_address,
+            '{{ Company Address }}' => $this->coverLetter->company_address,
             '{{ Posisi }}' => $this->coverLetter->applied_position,
+            '{{ Position }}' => $this->coverLetter->applied_position,
         ];
 
         return str_replace(array_keys($placeholders), array_values($placeholders), $content);

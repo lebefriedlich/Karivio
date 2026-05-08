@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Table('cover_letters')]
 #[Fillable([
     'user_id',
+    'language',
     'full_name',
     'phone',
     'email',

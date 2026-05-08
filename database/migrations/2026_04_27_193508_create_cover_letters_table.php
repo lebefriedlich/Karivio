@@ -11,23 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cover_letters', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
-            // Personal Info
-            $table->string('full_name');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('city');
-            $table->date('date');
-            // Company Info
-            $table->string('company_name');
-            $table->string('company_address');
-            $table->string('applied_position');
-            // Content
-            $table->text('content');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('cover_letters')) {
+            Schema::create('cover_letters', function (Blueprint $table) {
+                $table->uuid('id')->primary();
+                $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
+                // Personal Info
+                $table->string('full_name');
+                $table->string('phone');
+                $table->string('email');
+                $table->string('city');
+                $table->date('date');
+                // Company Info
+                $table->string('company_name');
+                $table->string('company_address');
+                $table->string('applied_position');
+                // Content
+                $table->text('content');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

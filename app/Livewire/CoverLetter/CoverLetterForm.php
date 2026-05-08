@@ -26,6 +26,7 @@ class CoverLetterForm extends Component
     public $company_address = '';
     public $applied_position = '';
     public $content = '';
+    public $language = 'id';
 
     public function mount($id = null)
     {
@@ -46,51 +47,23 @@ class CoverLetterForm extends Component
             $this->company_address = $this->coverLetter->company_address;
             $this->applied_position = $this->coverLetter->applied_position;
             $this->content = $this->coverLetter->content;
-        } else {
-            $this->updateContent();
+            $this->language = $this->coverLetter->language ?? 'id';
         }
     }
 
     public function updated($propertyName)
     {
-        $fields = ['full_name', 'company_name', 'applied_position'];
-        if (in_array($propertyName, $fields)) {
-            $this->updateContent();
-        }
+        // No longer auto-updating content to prevent overwriting user edits
     }
 
     public function updateContent()
     {
-        $template = $this->getDefaultTemplate();
-
-        $replacements = [
-            '{{ Nama Lengkap }}' => $this->full_name ?: '{{ Nama Lengkap }}',
-            '{{ Nama Perusahaan }}' => $this->company_name ?: '{{ Nama Perusahaan }}',
-            '{{ Posisi }}' => $this->applied_position ?: '{{ Posisi }}',
-        ];
-
-        $this->content = str_replace(array_keys($replacements), array_values($replacements), $template);
+        $this->content = $this->getDefaultTemplate();
     }
 
     public function getDefaultTemplate()
     {
-        return "Dengan hormat,
-
-Dengan ini saya mengajukan lamaran untuk posisi {{ Posisi }} di {{ Nama Perusahaan }}. Saya merupakan mahasiswa tingkat akhir Teknik Informatika dengan pengalaman sebagai Backend Developer dalam pengembangan sistem berbasis web. Saya memiliki kompetensi dalam pengembangan dan pemeliharaan layanan backend, API integration, serta performance optimization menggunakan PHP, JavaScript, dan Go dengan framework Laravel, Express.js, dan Fastify.
-
-Saya memiliki pengalaman profesional sebagai Backend Developer yang mencakup pengembangan dan penyempurnaan fitur backend sesuai kebutuhan bisnis, serta memastikan stabilitas, security, dan performance sistem tetap optimal. Dalam peran tersebut, saya terbiasa melakukan debugging, testing, dan deployment pada environment production, serta melakukan monitoring dan troubleshooting untuk menjaga kualitas layanan sistem. Saya juga terlibat dalam pengembangan fitur baru, peningkatan kualitas kode, serta memastikan setiap implementasi berjalan sesuai dengan standar pengembangan yang baik.
-
-Selain itu saya juga aktif berorganisasi di bidang teknologi, dengan pengalaman sebagai leader komunitas serta terlibat sebagai speaker dan developer dalam berbagai kegiatan edukasi. Saya terlibat dalam perencanaan dan pelaksanaan program kerja, penyusunan materi teknis, serta penyampaian materi kepada peserta dalam berbagai kegiatan pengembangan kompetensi. Keterlibatan ini membantu mengembangkan kemampuan leadership, komunikasi, serta teamwork, sekaligus memperluas pemahaman saya terhadap penerapan teknologi secara praktis.
-
-Saya juga memiliki pengalaman sebagai asisten praktikum pada mata kuliah Web Programming dan Object-Oriented Programming, dengan peran dalam membimbing mahasiswa serta membantu penyelesaian permasalahan teknis secara terstruktur. Pengalaman ini memperkuat kemampuan analisis, ketelitian, serta kemampuan dalam menjelaskan konsep teknis secara jelas dan sistematis.
-
-Saya memiliki motivasi tinggi untuk terus mengembangkan kemampuan serta memberikan kontribusi yang optimal bagi {{ Nama Perusahaan }}. Saya meyakini bahwa kombinasi antara kemampuan teknis, pengalaman, serta keaktifan dalam organisasi teknologi dapat memberikan nilai tambah bagi perusahaan.
-
-Sebagai bahan pertimbangan, bersama surat ini saya lampirkan CV. Besar harapan saya untuk dapat diberikan kesempatan mengikuti tahapan seleksi selanjutnya. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih.
-
-Hormat saya,
-
-{{ Nama Lengkap }}";
+        return "";
     }
 
     public function save()
@@ -105,6 +78,7 @@ Hormat saya,
             'company_address' => 'required|string|max:255',
             'applied_position' => 'required|string|max:255',
             'content' => 'required|string',
+            'language' => 'required|in:id,en',
         ]);
 
         if ($this->coverLetterId) {
