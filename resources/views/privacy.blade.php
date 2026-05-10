@@ -25,10 +25,19 @@
     <h2>3. Data Protection</h2>
     <p>We implement appropriate security measures to protect your data from unauthorized access or disclosure. We do not sell or share your personal information with third parties.</p>
 
-    <h2>4. Third-Party Services</h2>
-    <p>We use Google OAuth for authentication. Please refer to Google's Privacy Policy for information on how they handle your data.</p>
+    <h2>4. Google User Data Usage</h2>
+    <p>Karivio uses Google OAuth to allow you to send job applications directly from the platform. We request the <code>https://www.googleapis.com/auth/gmail.send</code> scope to facilitate this.</p>
+    <ul>
+        <li><strong>Access:</strong> We only access your Gmail account to send emails that you explicitly compose and trigger within Karivio.</li>
+        <li><strong>Use:</strong> Your Google user data (email address and tokens) is used to authenticate the "Send" action. We do not use this data for any other purpose.</li>
+        <li><strong>Storage:</strong> We store your Google Refresh Token securely in our database to maintain your session. We do not store the content of your emails beyond what is necessary for logging and tracking the status of your applications.</li>
+        <li><strong>Sharing:</strong> We do not share your Google user data with any third parties, except as required to provide the service (i.e., communicating with Google APIs).</li>
+    </ul>
 
-    <h2>5. Contact Us</h2>
+    <h2>5. Third-Party Services</h2>
+    <p>We use Google OAuth for authentication and email services. Please refer to <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a> for information on how they handle your data.</p>
+
+    <h2>6. Contact Us</h2>
     <p>If you have any questions about this Privacy Policy, please contact us at support@karivio.mhna.my.id.</p>
 
     <hr>
