@@ -68,21 +68,21 @@
                             <div>
                                 <label
                                     class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">{{ __('Nomor Telepon') }}</label>
-                                <input type="tel" wire:model="phone"
+                                <input type="tel" wire:model.live="phone"
                                     class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                                     placeholder="{{ __('0812...') }}">
                             </div>
                             <div>
                                 <label
                                     class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">{{ __('Email') }}</label>
-                                <input type="email" wire:model="email"
+                                <input type="email" wire:model.live="email"
                                     class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                                     placeholder="{{ __('email@contoh.com') }}">
                             </div>
                             <div>
                                 <label
                                     class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">{{ __('Kota Asal') }}</label>
-                                <input type="text" wire:model="city"
+                                <input type="text" wire:model.live="city"
                                     class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                                     placeholder="{{ __('Kota') }}">
                             </div>
@@ -113,14 +113,14 @@
                             <div class="md:col-span-2">
                                 <label
                                     class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">{{ __('Alamat Perusahaan') }}</label>
-                                <input type="text" wire:model="company_address"
+                                <input type="text" wire:model.live="company_address"
                                     class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                                     placeholder="{{ __('Alamat Perusahaan') }}">
                             </div>
                             <div>
                                 <label
                                     class="block text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300">{{ __('Tanggal Surat') }}</label>
-                                <input type="date" wire:model="date"
+                                <input type="date" wire:model.live="date"
                                     class="w-full px-3 py-2 border border-gray-300 text-black dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
                         </div>

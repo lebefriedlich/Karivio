@@ -12,18 +12,12 @@ use Livewire\Component;
 #[Title('List CV')]
 class CvList extends Component
 {
-    public $cvs = [];
+    use \Livewire\WithPagination;
 
     protected $listeners = ['doDeleteCv' => 'deleteCv'];
 
     public function mount($cvId = null)
     {
-        $this->loadCvs();
-    }
-
-    public function loadCvs()
-    {
-        $this->cvs = Cv::where('user_id', auth()->id())->latest()->get();
     }
 
     public function confirmDelete($id)
@@ -52,7 +46,6 @@ class CvList extends Component
         if ($cv && $cv->user_id === auth()->id()) {
             DocumentStorageService::deleteCvFiles($cv);
             $cv->delete();
-            $this->loadCvs();
             $this->dispatch('toast', [
                 'type' => 'success',
                 'title' => 'Dihapus!',
@@ -63,6 +56,8 @@ class CvList extends Component
 
     public function render()
     {
-        return view('livewire.cv.cv-list');
+        return view('livewire.cv.cv-list', [
+            'cvs' => Cv::where('user_id', auth()->id())->latest()->paginate(9)
+        ]);
     }
 }

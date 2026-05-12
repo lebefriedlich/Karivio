@@ -13,6 +13,8 @@ use Livewire\Component;
 #[Title('File Saya')]
 class FileManagement extends Component
 {
+    use \Livewire\WithPagination;
+
     public function render()
     {
         $userId = Auth::id();
@@ -57,7 +59,20 @@ class FileManagement extends Component
             });
 
         // Merge and sort
-        $files = $cvs->concat($coverLetters)->sortByDesc('date');
+        $allFiles = $cvs->concat($coverLetters)->sortByDesc('date');
+
+        // Manual Pagination
+        $currentPage = \Livewire\Features\SupportPagination\SupportPagination::getPageName();
+        $page = $this->getPage();
+        $perPage = 9;
+        
+        $files = new \Illuminate\Pagination\LengthAwarePaginator(
+            $allFiles->forPage($page, $perPage),
+            $allFiles->count(),
+            $perPage,
+            $page,
+            ['path' => \Illuminate\Support\Facades\Request::url(), 'query' => \Illuminate\Support\Facades\Request::query()]
+        );
 
         return view('livewire.pages.file-management', [
             'files' => $files

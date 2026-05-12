@@ -15,6 +15,30 @@ class CoverLetterList extends Component
 {
     protected $listeners = ['doDeleteCoverLetter' => 'delete'];
 
+    public $showTemplateModal = false;
+    public $templateContent = '';
+
+    public function openTemplateModal()
+    {
+        $this->templateContent = Auth::user()->cover_letter_template ?? '';
+        $this->showTemplateModal = true;
+    }
+
+    public function saveTemplate()
+    {
+        Auth::user()->update([
+            'cover_letter_template' => $this->templateContent
+        ]);
+
+        $this->showTemplateModal = false;
+        
+        $this->dispatch('toast', [
+            'type' => 'success',
+            'title' => 'Berhasil!',
+            'message' => 'Template Cover Letter telah disimpan.'
+        ]);
+    }
+
     public function mount($id = null)
     {
         // Handle potential route params
@@ -50,11 +74,13 @@ class CoverLetterList extends Component
         ]);
     }
 
+    use \Livewire\WithPagination;
+
     public function render()
     {
         $coverLetters = CoverLetter::where('user_id', Auth::id())
             ->orderBy('updated_at', 'desc')
-            ->get();
+            ->paginate(9);
 
         return view('livewire.cover-letter.list', [
             'coverLetters' => $coverLetters

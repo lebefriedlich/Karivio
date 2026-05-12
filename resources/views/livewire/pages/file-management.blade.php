@@ -88,5 +88,9 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="mt-8">
+            {{ $files->links() }}
+        </div>
     @endif
 </main>

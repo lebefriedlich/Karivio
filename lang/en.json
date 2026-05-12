@@ -195,5 +195,9 @@
     "Tanggal Buat": "Creation Date",
     "CV": "CV",
     "Cover Letter": "Cover Letter",
-    "Belum diisi": "Not filled"
+    "Belum diisi": "Not filled",
+    "Default Template Body": "Default Template Body",
+    "Atur template default yang akan digunakan saat membuat Cover Letter baru. Gunakan placeholder berikut untuk pengisian otomatis:": "Set the default template to be used when creating a new Cover Letter. Use the following placeholders for automatic filling:",
+    "Simpan Template": "Save Template",
+    "Batal": "Cancel"
 }

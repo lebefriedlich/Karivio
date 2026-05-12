@@ -27,10 +27,12 @@ class CoverLetterForm extends Component
     public $applied_position = '';
     public $content = '';
     public $language = 'id';
+    public $baseTemplate = '';
 
     public function mount($id = null)
     {
         $this->date = date('Y-m-d');
+        $this->baseTemplate = Auth::user()->cover_letter_template ?? '';
 
         if ($id) {
             $this->coverLetterId = $id;
@@ -48,12 +50,56 @@ class CoverLetterForm extends Component
             $this->applied_position = $this->coverLetter->applied_position;
             $this->content = $this->coverLetter->content;
             $this->language = $this->coverLetter->language ?? 'id';
+        } else {
+            $this->content = $this->baseTemplate;
+            $this->syncContent();
         }
     }
 
     public function updated($propertyName)
     {
-        // No longer auto-updating content to prevent overwriting user edits
+        if (in_array($propertyName, ['applied_position', 'company_name', 'full_name', 'city', 'date', 'phone', 'email', 'company_address'])) {
+            $this->syncContent();
+        }
+    }
+
+    public function syncContent()
+    {
+        \Illuminate\Support\Facades\Log::info('Syncing content', [
+            'baseTemplate' => $this->baseTemplate,
+            'posisi' => $this->applied_position,
+            'perusahaan' => $this->company_name
+        ]);
+        // Only sync if we have a base template and we are in "Create" mode or the content is still identical to processed template
+        if (empty($this->baseTemplate))
+            return;
+
+        // If editing existing, we only sync if content matches processed template (meaning it hasn't been manually diverged yet)
+        // But the user said "terganti otomatis", so maybe always sync if not edited manually?
+        // To keep it simple and follow "terganti otomatis":
+        $placeholders = [
+            // Company Name
+            '{{ Nama Perusahaan }}' => $this->company_name,
+            '{{ Company Name }}' => $this->company_name,
+            '{{ nama perusahaan / company name }}' => $this->company_name,
+            
+            // Position
+            '{{ Posisi }}' => $this->applied_position,
+            '{{ Position }}' => $this->applied_position,
+            '{{ posisi / position }}' => $this->applied_position,
+            '{{ Posisi yang Dilamar }}' => $this->applied_position,
+            '{{ Position Applied }}' => $this->applied_position,
+        ];
+
+        // Process replacements
+        $processed = $this->baseTemplate;
+        foreach ($placeholders as $key => $value) {
+            // Support both with and without spaces inside braces
+            $keyNoSpace = str_replace(['{{ ', ' }}'], ['{{', '}}'], $key);
+            $processed = str_ireplace([$key, $keyNoSpace], $value ?: $key, $processed);
+        }
+
+        $this->content = $processed;
     }
 
     public function updateContent()

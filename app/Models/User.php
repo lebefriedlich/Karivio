@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
     'google_token',
     'google_refresh_token',
     'google_token_expires_at',
+    'cover_letter_template',
 ])]
 #[Hidden(['password', 'remember_token'])]
 #[WithoutIncrementing]

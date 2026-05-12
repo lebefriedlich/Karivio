@@ -34,16 +34,25 @@ class CoverLetter extends Model
     public function getProcessedContent()
     {
         $placeholders = [
-            '{{ Nama Lengkap }}' => $this->full_name,
-            '{{ Telepon }}' => $this->phone,
-            '{{ Email }}' => $this->email,
-            '{{ Kota }}' => $this->city,
-            '{{ Tanggal }}' => \Carbon\Carbon::parse($this->date)->translatedFormat('d F Y'),
+            // Company Name
             '{{ Nama Perusahaan }}' => $this->company_name,
-            '{{ Alamat Perusahaan }}' => $this->company_address,
+            '{{ Company Name }}' => $this->company_name,
+            '{{ nama perusahaan / company name }}' => $this->company_name,
+            
+            // Position
             '{{ Posisi }}' => $this->applied_position,
+            '{{ Position }}' => $this->applied_position,
+            '{{ posisi / position }}' => $this->applied_position,
+            '{{ Posisi yang Dilamar }}' => $this->applied_position,
+            '{{ Position Applied }}' => $this->applied_position,
         ];
 
-        return str_replace(array_keys($placeholders), array_values($placeholders), $this->content);
+        $processed = $this->content;
+        foreach ($placeholders as $key => $value) {
+            $keyNoSpace = str_replace(['{{ ', ' }}'], ['{{', '}}'], $key);
+            $processed = str_ireplace([$key, $keyNoSpace], $value ?: $key, $processed);
+        }
+
+        return $processed;
     }
 }

@@ -73,5 +73,9 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="mt-8">
+            {{ $cvs->links() }}
+        </div>
     @endif
 </main>

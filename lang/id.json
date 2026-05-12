@@ -182,5 +182,9 @@
     "Tanggal Buat": "Tanggal Buat",
     "CV": "CV",
     "Cover Letter": "Cover Letter",
-    "Belum diisi": "Belum Diisi"
+    "Belum diisi": "Belum Diisi",
+    "Default Template Body": "Template Body Default",
+    "Atur template default yang akan digunakan saat membuat Cover Letter baru. Gunakan placeholder berikut untuk pengisian otomatis:": "Atur template default yang akan digunakan saat membuat Cover Letter baru. Gunakan placeholder berikut untuk pengisian otomatis:",
+    "Simpan Template": "Simpan Template",
+    "Batal": "Batal"
 }
