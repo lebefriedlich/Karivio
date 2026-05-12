@@ -62,7 +62,6 @@ class FileManagement extends Component
         $allFiles = $cvs->concat($coverLetters)->sortByDesc('date');
 
         // Manual Pagination
-        $currentPage = \Livewire\Features\SupportPagination\SupportPagination::getPageName();
         $page = $this->getPage();
         $perPage = 9;
         
