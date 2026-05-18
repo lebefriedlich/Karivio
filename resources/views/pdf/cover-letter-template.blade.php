@@ -73,7 +73,7 @@
 <body>
     <div class="header">
         <div class="name">{{ $coverLetter->full_name }}</div>
-        <div><a href="https://wa.me/{{ $coverLetter->phone }}" class="phone-link">{{ $coverLetter->phone }}</a></div>
+        <div><a href="https://wa.me/{{ preg_replace('/^0/', '62', $coverLetter->phone) }}" class="phone-link">{{ $coverLetter->phone }}</a></div>
         <div><a href="mailto:{{ $coverLetter->email }}" class="email-link">{{ $coverLetter->email }}</a></div>
     </div>
 

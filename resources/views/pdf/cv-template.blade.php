@@ -140,7 +140,7 @@
         <div class="header">
             <h1>{{ $cv->full_name }}</h1>
             <div class="contact-info">
-                {{ $cv->phone }} | 
+                <a href="https://wa.me/{{ preg_replace('/^0/', '62', $cv->phone) }}">{{ $cv->phone }}</a> | 
                 <a href="mailto:{{ $cv->email }}">{{ $cv->email }}</a> | 
                 @if ($cv->linkedin_url)
                     <a href="{{ $cv->linkedin_url }}">{{ $cv->language === 'en' ? 'LinkedIn Profile' : 'Linkedin Profil' }}</a> | 
