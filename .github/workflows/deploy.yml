@@ -1,15 +1,12 @@
 name: deploy
 
 on:
-  workflow_run:
-    workflows: ["tests"]
-    types: [completed]
+  push:
     branches: [main]
 
 jobs:
   deploy:
     name: Laravel Deploy via FTP
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
