@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="dark" data-topbar-color="dark" data-menu-color="dark">
 
 <head>
     <meta charset="utf-8">
@@ -11,6 +11,21 @@
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <script>
+        // Force full dark mode session storage setting
+        const forceConfig = {
+            direction: "ltr",
+            theme: "dark",
+            layout: { width: "default", position: "fixed" },
+            topbar: { color: "dark" },
+            menu: { color: "dark" },
+            sidenav: { view: "default" }
+        };
+        sessionStorage.setItem("__ATTEX_CONFIG__", JSON.stringify(forceConfig));
+        document.documentElement.setAttribute("data-mode", "dark");
+        document.documentElement.setAttribute("data-topbar-color", "dark");
+        document.documentElement.setAttribute("data-menu-color", "dark");
+    </script>
     <script src="{{ asset('assets/js/config.min.js') }}"></script>
     @livewireStyles
 </head>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="dark" data-topbar-color="dark" data-menu-color="dark">
 
 <head>
     <meta charset="utf-8">
@@ -11,6 +11,21 @@
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <script>
+        // Force full dark mode session storage setting
+        const forceConfig = {
+            direction: "ltr",
+            theme: "dark",
+            layout: { width: "default", position: "fixed" },
+            topbar: { color: "dark" },
+            menu: { color: "dark" },
+            sidenav: { view: "default" }
+        };
+        sessionStorage.setItem("__ATTEX_CONFIG__", JSON.stringify(forceConfig));
+        document.documentElement.setAttribute("data-mode", "dark");
+        document.documentElement.setAttribute("data-topbar-color", "dark");
+        document.documentElement.setAttribute("data-menu-color", "dark");
+    </script>
     <script src="{{ asset('assets/js/config.min.js') }}"></script>
     @livewireStyles
 </head>
@@ -125,29 +140,8 @@
                         </span>
                     </button>
 
-                    <!-- Theme Setting Button -->
-                    <div class="relative ms-auto">
-                        <button data-fc-type="offcanvas" data-fc-target="theme-customization" type="button" class="nav-link p-2">
-                            <span class="sr-only">Customization</span>
-                            <span class="flex items-center justify-center">
-                                <i class="ri-settings-3-line text-2xl"></i>
-                            </span>
-                        </button>
-                    </div>
-
-                    <!-- Light/Dark Toggle Button -->
-                    <div class="relative lg:flex hidden">
-                        <button id="light-dark-mode" type="button" class="nav-link p-2">
-                            <span class="sr-only">Light/Dark Mode</span>
-                            <span class="flex items-center justify-center">
-                                <i class="ri-moon-line text-2xl block dark:hidden"></i>
-                                <i class="ri-sun-line text-2xl hidden dark:block"></i>
-                            </span>
-                        </button>
-                    </div>
-
                     <!-- Language Toggle -->
-                    <div class="relative flex">
+                    <div class="relative flex ms-auto">
                         <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link p-2">
                             <span class="flex items-center justify-center">
                                 <i class="ri-global-line text-2xl"></i>

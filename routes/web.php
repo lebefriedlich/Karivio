@@ -23,7 +23,7 @@ Route::get('/locale/{locale}', function ($locale) {
 use App\Http\Controllers\Auth\GoogleController;
 
 Route::get('/', function () {
-    return auth()->check() ? redirect('/dashboard') : redirect('/login');
+    return view('welcome');
 });
 
 Route::view('/privacy-policy', 'privacy')->name('privacy');
