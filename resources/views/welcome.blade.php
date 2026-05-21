@@ -806,7 +806,7 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-white text-3xl p-1 transition-transform active:scale-90 flex items-center justify-center">
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-white text-3xl p-1 transition-transform active:scale-90 flex items-center justify-center" aria-label="Toggle Menu">
                     <i class="ri-menu-3-line" id="mobile-menu-icon"></i>
                 </button>
             </div>

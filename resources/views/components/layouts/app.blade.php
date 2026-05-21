@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="dark" data-topbar-color="dark" data-menu-color="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-mode="dark" data-topbar-color="dark" data-menu-color="dark">
 
 <head>
     <meta charset="utf-8">
@@ -54,7 +54,7 @@
                 </a>
 
                 <!-- Sidenav Menu Toggle Button -->
-                <button id="button-hover-toggle" class="absolute top-5 end-2 rounded-full p-1.5 z-50">
+                <button id="button-hover-toggle" class="absolute top-5 end-2 rounded-full p-1.5 z-50" aria-label="Toggle Hover Menu">
                     <span class="sr-only">Menu Toggle Button</span>
                     <i class="ri-checkbox-blank-circle-line text-xl"></i>
                 </button>
@@ -133,7 +133,7 @@
                     </a>
 
                     <!-- Sidenav Menu Toggle Button -->
-                    <button id="button-toggle-menu" class="nav-link p-2">
+                    <button id="button-toggle-menu" class="nav-link p-2" aria-label="Toggle Menu">
                         <span class="sr-only">Menu Toggle Button</span>
                         <span class="flex items-center justify-center">
                             <i class="ri-menu-2-fill text-2xl"></i>
@@ -142,7 +142,7 @@
 
                     <!-- Language Toggle -->
                     <div class="relative flex ms-auto">
-                        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link p-2">
+                        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link p-2" aria-label="Language Options">
                             <span class="flex items-center justify-center">
                                 <i class="ri-global-line text-2xl"></i>
                                 <span class="ms-1 text-xs font-bold uppercase">{{ app()->getLocale() }}</span>
@@ -160,7 +160,7 @@
 
                     <!-- Fullscreen Toggle Button -->
                     <div class="relative lg:flex hidden">
-                        <button data-toggle="fullscreen" type="button" class="nav-link p-2">
+                        <button data-toggle="fullscreen" type="button" class="nav-link p-2" aria-label="Toggle Fullscreen">
                             <span class="sr-only">Fullscreen Mode</span>
                             <span class="flex items-center justify-center">
                                 <i class="ri-fullscreen-line text-2xl"></i>
@@ -170,7 +170,7 @@
 
                     <!-- Profile Dropdown Button -->
                     <div class="relative">
-                        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
+                        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10" aria-label="User Profile">
                             @if(Auth::check())
                                 <img src="{{ Auth::user()->avatar ?? asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-full h-8">
                                 <span class="md:flex flex-col gap-0.5 text-start hidden">
@@ -227,7 +227,7 @@
             <div id="theme-customization" class="fc-offcanvas-open:translate-x-0 hidden translate-x-full rtl:-translate-x-full fixed inset-y-0 end-0 transition-all duration-300 transform max-w-72 w-full z-50 bg-white dark:bg-gray-800" tabindex="-1">
                 <div class="h-16 flex items-center text-white bg-primary px-6 gap-3">
                     <h5 class="text-base flex-grow">Pengaturan Tema</h5>
-                    <button type="button" data-fc-dismiss><i class="ri-close-line text-xl"></i></button>
+                    <button type="button" data-fc-dismiss aria-label="Close Settings"><i class="ri-close-line text-xl"></i></button>
                 </div>
 
                 <div class="h-[calc(100vh-128px)]" data-simplebar>
@@ -377,10 +377,10 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
-    <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    <script defer src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script defer src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
+    <script defer src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
+    <script defer src="{{ asset('assets/js/app.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

@@ -5,8 +5,8 @@
             <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">{{ __('Lengkapi form di bawah untuk mengirim lamaran via Gmail.') }}</p>
         </div>
         <div class="flex items-center gap-3">
-            <a href="{{ route('email.list') }}" class="btn bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold px-4 py-2 rounded-xl text-sm">
-                <i class="ri-arrow-left-line mr-1"></i> {{ __('Kembali ke Riwayat') }}
+            <a href="{{ route('email.list') }}" class="btn bg-secondary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all">
+                <i class="ri-arrow-left-line text-lg"></i> {{ __('Kembali') }}
             </a>
         </div>
     </div>
