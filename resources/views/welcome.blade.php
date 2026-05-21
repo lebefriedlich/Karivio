@@ -4,8 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda—semua dalam satu platform elegan.') }}" name="description">
-    <meta content="Karivio" name="author">
+    <meta name="description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda—semua dalam satu platform elegan.') }}">
+    <meta name="keywords" content="Karivio, CV Builder, Lamaran Kerja, Job Application, Cover Letter Generator, Gmail Integration, Auto Apply">
+    <meta name="author" content="Karivio">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="{{ url('/') }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}">
+    <meta property="og:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda—semua dalam satu platform elegan.') }}">
+    <meta property="og:image" content="{{ asset('logo.svg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url('/') }}">
+    <meta property="twitter:title" content="Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}">
+    <meta property="twitter:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda—semua dalam satu platform elegan.') }}">
+    <meta property="twitter:image" content="{{ asset('logo.svg') }}">
+
     <title>Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}">
@@ -171,9 +190,15 @@
         }
 
         .krv-nav-actions {
-            display: flex !important;
-            align-items: center !important;
-            gap: 1.25rem !important;
+            display: none !important;
+        }
+
+        @media (min-width: 1024px) {
+            .krv-nav-actions {
+                display: flex !important;
+                align-items: center !important;
+                gap: 1.25rem !important;
+            }
         }
 
         /* Gradient Text */
@@ -225,8 +250,8 @@
             display: flex !important;
             flex-direction: column !important;
             gap: 7rem !important; /* Extremely generous gap between sections */
-            padding-top: 4rem !important;
-            padding-bottom: 7rem !important;
+            padding-top: 2rem !important;
+            padding-bottom: 4rem !important;
             position: relative;
             z-index: 10;
             box-sizing: border-box;
@@ -235,8 +260,8 @@
         @media (min-width: 1024px) {
             .krv-main {
                 gap: 9rem !important; /* Breathing room at widescreen */
-                padding-top: 6rem !important;
-                padding-bottom: 9rem !important;
+                padding-top: 2rem !important;
+                padding-bottom: 4rem !important;
             }
         }
 
@@ -748,6 +773,7 @@
 
                 <!-- Navigation Links - collision proof -->
                 <nav class="krv-nav-menu">
+                    <a href="#philosophy">{{ __('Filosofi Karivio') }}</a>
                     <a href="#features">{{ __('Core Features') }}</a>
                     <a href="#transparency">{{ __('Google OAuth & Permissions') }}</a>
                     <a href="{{ route('privacy') }}">{{ __('Privacy Policy') }}</a>
@@ -778,9 +804,76 @@
                         </a>
                     @endauth
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-white text-3xl p-1 transition-transform active:scale-90 flex items-center justify-center">
+                    <i class="ri-menu-3-line" id="mobile-menu-icon"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 z-40 hidden opacity-0 transition-opacity duration-300 lg:hidden pointer-events-auto" style="background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px);"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full z-40 hidden flex-col pt-24 px-6 pb-6 lg:hidden transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl" style="background-color: #090d16; width: 85%; border-left: 1px solid rgba(255,255,255,0.05);">
+        <div class="flex-1 flex flex-col justify-between h-full relative z-10 w-full overflow-y-auto hide-scrollbar">
+            <!-- Navigation Links -->
+            <nav class="flex flex-col gap-3 mt-2">
+                <a href="#philosophy" class="flex items-center gap-4 p-4 rounded-2xl transition-all font-semibold text-gray-200 hover:text-white" style="background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl shrink-0 text-indigo-400" style="background-color: rgba(99,102,241,0.15);">
+                        <i class="ri-lightbulb-flash-line"></i>
+                    </div>
+                    <span>{{ __('Filosofi Karivio') }}</span>
+                </a>
+                
+                <a href="#features" class="flex items-center gap-4 p-4 rounded-2xl transition-all font-semibold text-gray-200 hover:text-white" style="background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl shrink-0 text-cyan-400" style="background-color: rgba(6,182,212,0.15);">
+                        <i class="ri-file-list-3-line"></i>
+                    </div>
+                    <span>{{ __('Core Features') }}</span>
+                </a>
+                
+                <a href="#transparency" class="flex items-center gap-4 p-4 rounded-2xl transition-all font-semibold text-gray-200 hover:text-white" style="background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl shrink-0 text-emerald-400" style="background-color: rgba(16,185,129,0.15);">
+                        <i class="ri-shield-user-line"></i>
+                    </div>
+                    <span>{{ __('Google OAuth') }}</span>
+                </a>
+                
+                <a href="{{ route('privacy') }}" class="flex items-center gap-4 p-4 rounded-2xl transition-all font-semibold text-gray-200 hover:text-white" style="background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl shrink-0 text-purple-400" style="background-color: rgba(168,85,247,0.15);">
+                        <i class="ri-lock-line"></i>
+                    </div>
+                    <span>{{ __('Privacy Policy') }}</span>
+                </a>
+            </nav>
+
+            <!-- Bottom Actions -->
+            <div class="flex flex-col gap-4 mt-8 pb-4">
+                <div class="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10">
+                    <span class="text-sm font-semibold text-gray-400">{{ __('Bahasa') }}</span>
+                    <div class="krv-locale-toggle scale-90 origin-right m-0">
+                        <a href="{{ route('locale.switch', 'id') }}" class="krv-locale-btn {{ app()->getLocale() == 'id' ? 'active' : '' }}">ID</a>
+                        <a href="{{ route('locale.switch', 'en') }}" class="krv-locale-btn {{ app()->getLocale() == 'en' ? 'active' : '' }}">EN</a>
+                    </div>
+                </div>
+
+                @auth
+                    <a href="{{ route('dashboard') }}" class="btn-glow bg-blue-600 text-white font-bold px-5 py-4 rounded-2xl text-center flex justify-center items-center gap-2">
+                        <i class="ri-dashboard-line text-lg"></i>
+                        <span>{{ __('Ke Dashboard') }}</span>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="btn-glow bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold px-5 py-4 rounded-2xl text-center flex justify-center items-center gap-2">
+                        <i class="ri-google-fill text-lg"></i>
+                        <span>{{ __('Masuk dengan Google') }}</span>
+                    </a>
+                @endauth
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content Wrapper -->
     <div class="krv-container">
@@ -885,9 +978,9 @@
                                     </div>
 
                                     <div class="flex flex-col gap-1.5 text-[10px] text-gray-400">
-                                        <p><strong>To:</strong> hr@awesomecompany.com</p>
-                                        <p><strong>Subject:</strong> Application for Backend Developer - John Doe</p>
-                                        <p><strong>Attachment:</strong> <span class="text-blue-400 underline">CV_JohnDoe.pdf</span></p>
+                                        <p><strong>{{ __('To:') }}</strong> hr@awesomecompany.com</p>
+                                        <p><strong>{{ __('Subject:') }}</strong> Application for Backend Developer - John Doe</p>
+                                        <p><strong>{{ __('Attachment:') }}</strong> <span class="text-blue-400 underline">CV_JohnDoe.pdf</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -896,8 +989,66 @@
                 </div>
             </section>
 
+            <!-- Philosophy Section -->
+            <section id="philosophy" style="scroll-margin-top: 120px;">
+                <div class="krv-transparency-panel">
+                    <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="krv-section-header w-full">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-400">{{ __('Filosofi Karivio') }}</span>
+                        <h2>{{ __('A Vision for Your Career') }}</h2>
+                        <div class="flex items-center justify-center gap-4 my-2">
+                            <div class="px-6 py-3 rounded-2xl bg-blue-500/10 border border-blue-500/20">
+                                <span class="text-xl font-bold text-blue-400">Career</span>
+                            </div>
+                            <span class="text-2xl font-bold text-gray-500">+</span>
+                            <div class="px-6 py-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/20">
+                                <span class="text-xl font-bold text-cyan-400">Vision</span>
+                            </div>
+                        </div>
+                        <p>{{ __('Karivio berasal dari gabungan dua kata: Career (Karier) dan Vision (Visi). Kami hadir sebagai platform yang membantu Anda merancang, membangun, dan mengambil langkah terbaik untuk masa depan karier Anda.') }}</p>
+                    </div>
+
+                    <div class="krv-features-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;">
+                        <!-- Meaning 1 -->
+                        <div class="krv-card">
+                            <div class="krv-card-icon bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                                <i class="ri-user-star-line"></i>
+                            </div>
+                            <h3>{{ __('Membangun Identitas') }}</h3>
+                            <p>{{ __('Membangun identitas profesional yang kuat melalui CV dan surat lamaran yang berstandar tinggi.') }}</p>
+                        </div>
+                        <!-- Meaning 2 -->
+                        <div class="krv-card">
+                            <div class="krv-card-icon bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
+                                <i class="ri-compass-3-line"></i>
+                            </div>
+                            <h3>{{ __('Menentukan Arah') }}</h3>
+                            <p>{{ __('Menentukan arah karier sesuai visi dan tujuan masa depan Anda dengan lebih terarah.') }}</p>
+                        </div>
+                        <!-- Meaning 3 -->
+                        <div class="krv-card">
+                            <div class="krv-card-icon bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                                <i class="ri-rocket-2-line"></i>
+                            </div>
+                            <h3>{{ __('Mengambil Peluang') }}</h3>
+                            <p>{{ __('Mengirim lamaran ke berbagai peluang secara cepat, efisien, dan tepat sasaran.') }}</p>
+                        </div>
+                        <!-- Meaning 4 -->
+                        <div class="krv-card">
+                            <div class="krv-card-icon bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
+                                <i class="ri-door-open-line"></i>
+                            </div>
+                            <h3>{{ __('Membuka Jalan') }}</h3>
+                            <p>{{ __('Membuka jalan menuju kesuksesan, profesionalitas, dan persiapan masa depan yang matang.') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Core Features List -->
-            <section id="features" class="krv-features scroll-mt-28">
+            <section id="features" class="krv-features" style="scroll-margin-top: 120px;">
                 <div class="krv-section-header">
                     <h2>{{ __('Core Features') }}</h2>
                     <p>{{ __('Dirancang khusus untuk mempermudah perjalanan karier Anda dari hulu ke hilir.') }}</p>
@@ -943,7 +1094,7 @@
             </section>
 
             <!-- Google OAuth Data Transparency -->
-            <section id="transparency" class="scroll-mt-28">
+            <section id="transparency" style="scroll-margin-top: 120px;">
                 <div class="krv-transparency-panel">
                     <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
                     <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -1043,6 +1194,59 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const overlay = document.getElementById('mobile-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            const menuLinks = drawer.querySelectorAll('a');
+
+            function toggleMenu() {
+                const isHidden = drawer.classList.contains('hidden');
+                
+                if (isHidden) {
+                    overlay.classList.remove('hidden');
+                    drawer.classList.remove('hidden');
+                    drawer.classList.add('flex');
+                    // Slight delay to allow display block to apply before opacity transition
+                    setTimeout(() => {
+                        overlay.classList.remove('opacity-0');
+                        drawer.classList.remove('translate-x-full');
+                        drawer.classList.add('translate-x-0');
+                    }, 10);
+                    icon.classList.remove('ri-menu-3-line');
+                    icon.classList.add('ri-close-line');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                } else {
+                    overlay.classList.add('opacity-0');
+                    drawer.classList.remove('translate-x-0');
+                    drawer.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+                        drawer.classList.remove('flex');
+                        drawer.classList.add('hidden');
+                    }, 300); // Wait for transition
+                    icon.classList.remove('ri-close-line');
+                    icon.classList.add('ri-menu-3-line');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            }
+
+            btn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu); // Click overlay to close
+
+            // Close menu when clicking a link
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!drawer.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

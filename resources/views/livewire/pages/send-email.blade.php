@@ -90,7 +90,7 @@
                     <i class="ri-database-2-line text-primary"></i> {{ __('Lampirkan File Sistem') }}
                 </h3>
                 <div class="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                    @foreach($allSystemFiles as $file)
+                    @foreach($paginatedSystemFiles as $file)
                         <label class="flex items-center gap-3 p-3 rounded-xl border {{ in_array($file['id'], $selectedSystemFileIds) ? 'bg-primary/5 border-primary/30' : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800' }} cursor-pointer transition-all">
                             <input type="checkbox" wire:model.live="selectedSystemFileIds" value="{{ $file['id'] }}" class="w-4 h-4 text-primary rounded">
                             <div class="overflow-hidden">
@@ -104,6 +104,9 @@
                             </div>
                         </label>
                     @endforeach
+                </div>
+                <div class="mt-4">
+                    {{ $paginatedSystemFiles->links(data: ['scrollTo' => false]) }}
                 </div>
             </div>
 

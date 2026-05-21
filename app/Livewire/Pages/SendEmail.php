@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -19,7 +20,7 @@ use Livewire\Component;
 #[Title('Kirim Lamaran')]
 class SendEmail extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, WithPagination;
 
     public $to = '';
     public $subject = '';
@@ -209,6 +210,20 @@ class SendEmail extends Component
 
     public function render()
     {
-        return view('livewire.pages.send-email');
+        $page = $this->getPage('page');
+        $perPage = 5;
+        $items = collect($this->allSystemFiles);
+
+        $paginatedSystemFiles = new \Illuminate\Pagination\LengthAwarePaginator(
+            $items->forPage($page, $perPage),
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+
+        return view('livewire.pages.send-email', [
+            'paginatedSystemFiles' => $paginatedSystemFiles
+        ]);
     }
 }
