@@ -11,6 +11,8 @@
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/auth.css') }}" rel="stylesheet" type="text/css">
+
     <script>
         // Force full dark mode session storage setting
         const forceConfig = {

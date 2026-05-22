@@ -7,17 +7,17 @@
     <!-- Page Title End -->
 
     <!-- File Management Section -->
-    <div class="mb-8 p-6 bg-gradient-to-r from-emerald-50 to-emerald-100 dark:!from-emerald-950/20 dark:!to-emerald-900/20 rounded-lg border border-emerald-200 dark:!border-emerald-800 shadow-sm dark:shadow-none" style="background: linear-gradient(to right, #ecfdf5, #d1fae5); border-color: #a7f3d0; border-radius: 2rem !important;">
-        <div class="flex justify-between items-center">
+    <div class="mb-8 p-6 rounded-[2rem] border shadow-lg relative overflow-hidden group transition-all" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-color: rgba(255,255,255,0.1);">
+        <div class="flex justify-between items-center relative z-10">
             <div>
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900 mb-2">📁 {{ __('File Saya') }}</h2>
-                <p class="text-blue-700 dark:text-gray-700">{{ __('Lihat semua dokumen CV dan Cover Letter Anda di satu tempat') }}</p>
+                <h2 class="text-2xl font-bold text-white mb-2">📁 {{ __('File Saya') }}</h2>
+                <p class="text-slate-300">{{ __('Lihat semua dokumen CV dan Cover Letter Anda di satu tempat') }}</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ route('email.list') }}" class="btn bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg shadow-red-600/10 border border-transparent dark:border-emerald-800/50">
+                <a href="{{ route('email.list') }}" class="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 shadow-lg backdrop-blur-md transition-all">
                     ✉️ {{ __('Kirim Email') }}
                 </a>
-                <a href="{{ route('file-management') }}" class="btn bg-indigo-600 dark:bg-emerald-600 text-white shadow-lg shadow-indigo-600/20">
+                <a href="{{ route('file-management') }}" class="btn bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg border border-indigo-500/50 transition-all">
                     📂 {{ __('Buka File Saya') }}
                 </a>
             </div>
@@ -25,17 +25,17 @@
     </div>
 
     <!-- CV Management Section -->
-    <div class="mb-8 p-6 bg-gradient-to-r from-blue-50 to-blue-100 dark:!from-blue-950/20 dark:!to-blue-900/20 rounded-lg border border-blue-200 dark:!border-blue-800 shadow-sm dark:shadow-none" style="background: linear-gradient(to right, #eff6ff, #dbeafe); border-color: #bfdbfe; border-radius: 2rem !important;">
-        <div class="flex justify-between items-center">
+    <div class="mb-8 p-6 rounded-[2rem] border shadow-lg relative overflow-hidden group transition-all" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-color: rgba(255,255,255,0.1);">
+        <div class="flex justify-between items-center relative z-10">
             <div>
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900 mb-2">📄 {{ __('Manajemen CV') }}</h2>
-                <p class="text-blue-700 dark:text-gray-700">{{ __('Buat, edit, dan kelola CV Anda dengan mudah') }}</p>
+                <h2 class="text-2xl font-bold text-white mb-2">📄 {{ __('Manajemen CV') }}</h2>
+                <p class="text-slate-300">{{ __('Buat, edit, dan kelola CV Anda dengan mudah') }}</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ route('cv.form') }}" class="btn bg-primary text-white shadow-lg shadow-primary/20">
+                <a href="{{ route('cv.form') }}" class="btn bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg border border-indigo-500/50 transition-all">
                     ✏️ {{ __('Buat CV Baru') }}
                 </a>
-                <a href="{{ route('cv.list') }}" class="btn bg-white dark:bg-slate-800 text-black dark:text-white border border-primary/20 dark:border-blue-800/50 shadow-sm">
+                <a href="{{ route('cv.list') }}" class="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 shadow-lg backdrop-blur-md transition-all">
                     📋 {{ __('Lihat CV Saya') }}
                 </a>
             </div>
@@ -43,17 +43,17 @@
     </div>
 
     <!-- Cover Letter Management Section -->
-    <div class="mb-8 p-6 bg-gradient-to-r from-blue-50 to-blue-100 dark:!from-indigo-950/20 dark:!to-indigo-900/20 rounded-lg border border-blue-200 dark:!border-indigo-800 shadow-sm dark:shadow-none" style="background: linear-gradient(to right, #eff6ff, #dbeafe); border-color: #bfdbfe; border-radius: 2rem !important;">
-        <div class="flex justify-between items-center">
+    <div class="mb-8 p-6 rounded-[2rem] border shadow-lg relative overflow-hidden group transition-all" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-color: rgba(255,255,255,0.1);">
+        <div class="flex justify-between items-center relative z-10">
             <div>
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-900 mb-2">✉️ {{ __('Manajemen Cover Letter') }}</h2>
-                <p class="text-blue-700 dark:text-gray-700">{{ __('Buat surat lamaran kerja profesional dalam hitungan detik') }}</p>
+                <h2 class="text-2xl font-bold text-white mb-2">✉️ {{ __('Manajemen Cover Letter') }}</h2>
+                <p class="text-slate-300">{{ __('Buat surat lamaran kerja profesional dalam hitungan detik') }}</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ route('cover-letter.form') }}" class="btn bg-primary text-white shadow-lg shadow-primary/20">
+                <a href="{{ route('cover-letter.form') }}" class="btn bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg border border-indigo-500/50 transition-all">
                     ✍️ {{ __('Buat Surat Baru') }}
                 </a>
-                <a href="{{ route('cover-letter.list') }}" class="btn bg-white dark:bg-slate-800 text-black dark:text-white border border-primary/20 dark:border-indigo-800/50 shadow-sm">
+                <a href="{{ route('cover-letter.list') }}" class="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 shadow-lg backdrop-blur-md transition-all">
                     📂 {{ __('Daftar Surat') }}
                 </a>
             </div>

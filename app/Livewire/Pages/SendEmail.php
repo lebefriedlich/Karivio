@@ -115,8 +115,8 @@ class SendEmail extends Component
 
                 $this->dispatch('toast', [
                     'type' => 'error',
-                    'title' => 'Gagal!',
-                    'message' => 'Total lampiran (sistem + manual) maksimal 3 file.'
+                    'title' => __('Gagal!'),
+                    'message' => __('Total lampiran (sistem + manual) maksimal 3 file.')
                 ]);
             }
         }

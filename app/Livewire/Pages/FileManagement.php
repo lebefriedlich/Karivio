@@ -82,8 +82,8 @@ class FileManagement extends Component
     {
         $this->dispatch('toast', [
             'type' => 'info',
-            'title' => 'Sedang Memproses...',
-            'message' => 'PDF Anda sedang disiapkan untuk diunduh.'
+            'title' => __('Sedang Memproses...'),
+            'message' => __('PDF Anda sedang disiapkan untuk diunduh.')
         ]);
 
         if ($type === 'CV') {

@@ -1,0 +1,239 @@
+.krv-login-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f172a;
+    overflow: hidden;
+    z-index: -1;
+}
+.krv-orb-1 {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(79, 70, 229, 0.4),
+        rgba(147, 51, 234, 0.4)
+    );
+    filter: blur(120px);
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    animation: krv-pulse 8s infinite alternate;
+}
+.krv-orb-2 {
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: linear-gradient(
+        to top left,
+        rgba(37, 99, 235, 0.3),
+        rgba(16, 185, 129, 0.3)
+    );
+    filter: blur(120px);
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    animation: krv-pulse 10s infinite alternate;
+    animation-delay: 2s;
+}
+.krv-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPgo8L3N2Zz4=");
+}
+@keyframes krv-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.krv-login-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: "Inter", "Plus Jakarta Sans", sans-serif;
+}
+
+.krv-glass-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    color: #fff;
+}
+
+.krv-glass-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+}
+
+.krv-glass-header {
+    padding: 48px 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.krv-logo-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.krv-logo-box:hover {
+    transform: scale(1.05);
+}
+
+.krv-logo-text {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.krv-glass-body {
+    padding: 30px 40px 48px;
+    text-align: center;
+}
+
+.krv-welcome-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+    margin-top: 0;
+}
+
+.krv-welcome-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.krv-google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.krv-google-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.krv-footer-text {
+    margin-top: 30px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+.krv-footer-text a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: color 0.3s;
+}
+
+.krv-footer-text a:hover {
+    color: #fff;
+}
+
+.krv-lang-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 8px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 50;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.krv-lang-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.krv-lang-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.krv-lang-btn.active {
+    background: #4f46e5;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+}

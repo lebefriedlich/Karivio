@@ -27,8 +27,8 @@ class CvList extends Component
             $this->dispatch('confirm', [
                 'onConfirm' => 'doDeleteCv',
                 'id' => $id,
-                'title' => 'Hapus CV?',
-                'message' => 'CV ' . $cv->full_name . ' akan dihapus permanen.'
+                'title' => __('Hapus CV?'),
+                'message' => __('CV :name akan dihapus permanen.', ['name' => $cv->full_name])
             ]);
         }
     }
@@ -48,8 +48,8 @@ class CvList extends Component
             $cv->delete();
             $this->dispatch('toast', [
                 'type' => 'success',
-                'title' => 'Dihapus!',
-                'message' => 'CV berhasil dihapus secara permanen.'
+                'title' => __('Dihapus!'),
+                'message' => __('CV berhasil dihapus secara permanen.')
             ]);
         }
     }

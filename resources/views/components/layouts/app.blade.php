@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet" type="text/css">
     <script>
         // Force full dark mode session storage setting
         const forceConfig = {
@@ -187,7 +188,7 @@
 
                         <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
                             <!-- item-->
-                            <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">{{ __('Selamat Datang !') }}</h6>
+                            <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">{{ __('Selamat Datang!') }}</h6>
 
                             <!-- item-->
                             <a href="{{ route('profile') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
@@ -408,7 +409,7 @@
             @if(session()->has('success'))
                 Toast.fire({
                     icon: 'success',
-                    title: 'Berhasil!',
+                    title: '{{ __("Berhasil!") }}',
                     text: "{{ session('success') }}"
                 });
             @endif
@@ -416,7 +417,7 @@
             @if(session()->has('error'))
                 Toast.fire({
                     icon: 'error',
-                    title: 'Gagal!',
+                    title: '{{ __("Gagal!") }}',
                     text: "{{ session('error') }}"
                 });
             @endif
@@ -438,12 +439,12 @@
             if (Array.isArray(data)) data = data[0];
             
             Swal.fire({
-                title: data.title || 'Apakah Anda yakin?',
-                text: data.message || "Data yang dihapus tidak dapat dikembalikan!",
+                title: data.title || '{{ __("Apakah Anda yakin?") }}',
+                text: data.message || '{{ __("Data yang dihapus tidak dapat dikembalikan!") }}',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: data.confirmButtonText || 'Ya, hapus!',
-                cancelButtonText: 'Batal',
+                confirmButtonText: data.confirmButtonText || '{{ __("Ya, hapus!") }}',
+                cancelButtonText: '{{ __("Batal") }}',
                 customClass: {
                     confirmButton: 'btn bg-danger text-white px-4 py-2 mx-2',
                     cancelButton: 'btn bg-secondary text-white px-4 py-2 mx-2'

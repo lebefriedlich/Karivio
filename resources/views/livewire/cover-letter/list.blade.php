@@ -23,40 +23,47 @@
 
     <!-- Template Modal -->
     @if($showTemplateModal)
-        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-            <div
-                class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden animate-in fade-in zoom-in duration-200">
-                <div class="p-6 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                        <i class="ri-file-text-line text-amber-500"></i>
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);">
+            <div class="w-full max-w-xl overflow-hidden animate-in fade-in zoom-in duration-300" 
+                 style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+                <div class="p-6 flex justify-between items-center" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h3 class="text-xl font-bold flex items-center gap-2" style="color: #fff;">
+                        <i class="ri-file-text-line" style="color: #fbbf24;"></i>
                         {{ __('Default Template Body') }}
                     </h3>
                     <button wire:click="$set('showTemplateModal', false)"
-                        class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-                        <i class="ri-close-line text-2xl"></i>
+                        class="rounded-full flex items-center justify-center transition-all"
+                        style="width: 32px; height: 32px; background: rgba(255,255,255,0.05); color: #94a3b8; border: none;">
+                        <i class="ri-close-line text-xl"></i>
                     </button>
                 </div>
                 <div class="p-6">
-                    <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">
+                    <p class="text-sm mb-5" style="color: #cbd5e1;">
                         {{ __('Atur template default yang akan digunakan saat membuat Cover Letter baru. Gunakan placeholder berikut untuk pengisian otomatis:') }}
                     </p>
-                    <div
-                        class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg text-xs font-mono">
-                        <div class="text-indigo-600 dark:text-indigo-400 font-bold">@{{ posisi }} / @{{ position }}</div>
-                        <div class="text-indigo-600 dark:text-indigo-400 font-bold">@{{ nama perusahaan }} / @{{ company name }}</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5 p-4 rounded-2xl text-xs font-mono" 
+                         style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2);">
+                        <div class="font-bold flex items-center gap-2" style="color: #818cf8;">
+                            <i class="ri-briefcase-line"></i> @{{ posisi }} / @{{ position }}
+                        </div>
+                        <div class="font-bold flex items-center gap-2" style="color: #818cf8;">
+                            <i class="ri-building-line"></i> @{{ nama perusahaan }} / @{{ company name }}
+                        </div>
                     </div>
                     <textarea wire:model="templateContent" rows="8"
-                        class="w-full px-4 py-3 bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-900 dark:text-white"
+                        class="w-full px-5 py-4 rounded-2xl transition-all resize-none shadow-inner"
+                        style="background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 14px;"
                         placeholder="{{ __('Tulis template Anda di sini...') }}"></textarea>
                 </div>
-                <div
-                    class="p-6 border-t border-gray-200 dark:border-slate-700 flex justify-end gap-3 bg-gray-50 dark:bg-slate-800">
+                <div class="p-6 flex justify-end gap-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
                     <button wire:click="$set('showTemplateModal', false)"
-                        class="px-6 py-2 rounded-xl font-bold text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all">
+                        class="px-6 py-2.5 rounded-xl font-bold transition-all"
+                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1;">
                         {{ __('Batal') }}
                     </button>
                     <button wire:click="saveTemplate"
-                        class="px-6 py-2 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/20 transition-all">
+                        class="px-6 py-2.5 rounded-xl font-bold transition-all"
+                        style="background: #4f46e5; border: 1px solid rgba(99,102,241,0.5); color: #fff; box-shadow: 0 4px 14px 0 rgba(79,70,229,0.39);">
                         {{ __('Simpan Template') }}
                     </button>
                 </div>

@@ -323,7 +323,7 @@ class CvForm extends Component
     public function saveCv()
     {
         if (!Auth::check()) {
-            session()->flash('error', 'Sesi Anda telah berakhir. Silakan login kembali.');
+            session()->flash('error', __('Sesi Anda telah berakhir. Silakan login kembali.'));
             return redirect()->route('login');
         }
 
@@ -370,11 +370,11 @@ class CvForm extends Component
             $this->dispatch('cv-saved', id: $cv->id);
         }
 
-        session()->flash('success', 'CV berhasil disimpan!');
+        session()->flash('success', __('CV berhasil disimpan!'));
         $this->dispatch('toast', [
             'type' => 'success',
-            'title' => 'Berhasil!',
-            'message' => 'Data CV Anda telah diperbarui.'
+            'title' => __('Berhasil!'),
+            'message' => __('Data CV Anda telah diperbarui.')
         ]);
     }
 
@@ -383,8 +383,8 @@ class CvForm extends Component
         if (!$this->cvId) {
             $this->dispatch('toast', [
                 'type' => 'error',
-                'title' => 'Gagal!',
-                'message' => 'Silakan simpan CV terlebih dahulu sebelum export!'
+                'title' => __('Gagal!'),
+                'message' => __('Silakan simpan CV terlebih dahulu sebelum export!')
             ]);
             return;
         }
@@ -392,8 +392,8 @@ class CvForm extends Component
         $this->saveCv();
         $this->dispatch('toast', [
             'type' => 'info',
-            'title' => 'Sedang Memproses...',
-            'message' => 'PDF Anda sedang disiapkan untuk diunduh.'
+            'title' => __('Sedang Memproses...'),
+            'message' => __('PDF Anda sedang disiapkan untuk diunduh.')
         ]);
         return redirect()->route('cv.export-pdf', $this->cvId);
     }

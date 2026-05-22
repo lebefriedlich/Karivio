@@ -53,7 +53,7 @@
                             </div>
 
                             <p class="text-xs text-gray-500 dark:text-slate-500 mb-4">
-                                {{ __('Diupdate') }}: {{ $cv->updated_at->format('d M Y H:i') }}
+                                {{ __('Diupdate') }}: {{ $cv->updated_at->translatedFormat('d M Y H:i') }}
                             </p>
                         </div>
 

@@ -29,8 +29,8 @@ class EmailList extends Component
 
         $this->dispatch('toast', [
             'type' => 'success',
-            'title' => 'Diproses!',
-            'message' => 'Email sedang dikirim ulang.'
+            'title' => __('Diproses!'),
+            'message' => __('Email sedang dikirim ulang.')
         ]);
     }
 
@@ -42,8 +42,8 @@ class EmailList extends Component
             $log->update(['status' => 'failed', 'error_message' => 'Dibatalkan oleh pengguna']);
             $this->dispatch('toast', [
                 'type' => 'info',
-                'title' => 'Dibatalkan',
-                'message' => 'Pengiriman email telah dibatalkan.'
+                'title' => __('Dibatalkan'),
+                'message' => __('Pengiriman email telah dibatalkan.')
             ]);
         }
     }

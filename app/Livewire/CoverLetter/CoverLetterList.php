@@ -34,8 +34,8 @@ class CoverLetterList extends Component
         
         $this->dispatch('toast', [
             'type' => 'success',
-            'title' => 'Berhasil!',
-            'message' => 'Template Cover Letter telah disimpan.'
+            'title' => __('Berhasil!'),
+            'message' => __('Template Cover Letter telah disimpan.')
         ]);
     }
 
@@ -50,8 +50,8 @@ class CoverLetterList extends Component
         $this->dispatch('confirm', [
             'onConfirm' => 'doDeleteCoverLetter',
             'id' => $id,
-            'title' => 'Hapus Cover Letter?',
-            'message' => 'Cover Letter untuk ' . $cl->company_name . ' akan dihapus permanen.'
+            'title' => __('Hapus Cover Letter?'),
+            'message' => __('Cover Letter untuk :company akan dihapus permanen.', ['company' => $cl->company_name])
         ]);
     }
 
@@ -69,8 +69,8 @@ class CoverLetterList extends Component
         $cl->delete();
         $this->dispatch('toast', [
             'type' => 'success',
-            'title' => 'Dihapus!',
-            'message' => 'Cover Letter berhasil dihapus.'
+            'title' => __('Dihapus!'),
+            'message' => __('Cover Letter berhasil dihapus.')
         ]);
     }
 

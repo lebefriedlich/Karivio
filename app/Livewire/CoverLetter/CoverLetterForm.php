@@ -141,8 +141,8 @@ class CoverLetterForm extends Component
             session()->flash('success', 'Cover Letter berhasil diperbarui!');
             $this->dispatch('toast', [
                 'type' => 'success',
-                'title' => 'Berhasil!',
-                'message' => 'Cover Letter telah diperbarui.'
+                'title' => __('Berhasil!'),
+                'message' => __('Cover Letter telah diperbarui.')
             ]);
         } else {
             $cv = CoverLetter::create([
@@ -166,8 +166,8 @@ class CoverLetterForm extends Component
         if ($this->coverLetterId) {
             $this->dispatch('toast', [
                 'type' => 'info',
-                'title' => 'Sedang Memproses...',
-                'message' => 'PDF Anda sedang disiapkan untuk diunduh.'
+                'title' => __('Sedang Memproses...'),
+                'message' => __('PDF Anda sedang disiapkan untuk diunduh.')
             ]);
             return redirect()->route('cover-letter.export-pdf', $this->coverLetterId);
         }

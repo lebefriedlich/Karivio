@@ -474,6 +474,7 @@
                 </div>
 
                 <div class="krv-footer-links">
+                    <a href="#philosophy">{{ __('Filosofi Karivio') }}</a>
                     <a href="#features">{{ __('Core Features') }}</a>
                     <a href="#transparency">{{ __('Google OAuth & Permissions') }}</a>
                     <a href="{{ route('privacy') }}" style="color: #3b82f6; text-decoration: underline;">{{ __('Privacy Policy') }}</a>

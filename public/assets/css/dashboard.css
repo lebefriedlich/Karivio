@@ -1,0 +1,148 @@
+/* Karivio Dashboard Glassmorphism */
+body {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+}
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(140px);
+    mix-blend-mode: screen;
+    z-index: -1;
+    animation: krv-pulse 10s infinite alternate;
+}
+body::before {
+    top: -20%;
+    left: -10%;
+    width: 70vw;
+    height: 70vh;
+    background: linear-gradient(
+        to bottom right,
+        rgba(79, 70, 229, 0.25),
+        rgba(147, 51, 234, 0.25)
+    );
+}
+body::after {
+    bottom: -20%;
+    right: -10%;
+    width: 70vw;
+    height: 70vh;
+    background: linear-gradient(
+        to top left,
+        rgba(37, 99, 235, 0.2),
+        rgba(16, 185, 129, 0.2)
+    );
+    animation-delay: 2s;
+}
+@keyframes krv-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Glass App Menu (Sidebar) */
+.app-menu {
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.logo-box {
+    background: transparent !important;
+}
+
+/* Glass Topbar */
+.app-header {
+    background: rgba(15, 23, 42, 0.4) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Glass Footer */
+.footer {
+    background: rgba(15, 23, 42, 0.4) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Fix text colors globally for dark theme */
+.text-slate-900,
+.text-gray-900,
+.text-gray-800,
+.text-black {
+    color: #f8fafc !important;
+}
+.bg-white {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Modals and Dropdowns */
+.fc-dropdown,
+.fc-offcanvas-open,
+#theme-customization {
+    background: rgba(30, 41, 59, 0.85) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Inner Cards (if any) */
+.card,
+.p-6.bg-gradient-to-r {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    border-radius: 24px !important;
+}
+
+/* SweetAlert Modal Glassmorphism */
+div:where(.swal2-container) div:where(.swal2-modal) {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+/* SweetAlert Toast Glassmorphism */
+div:where(.swal2-container) div:where(.swal2-toast) {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+}
+div:where(.swal2-container) h2:where(.swal2-title) {
+    color: #fff !important;
+}
+div:where(.swal2-container) div:where(.swal2-html-container) {
+    color: #cbd5e1 !important;
+}
+div:where(.swal2-container) button:where(.swal2-close) {
+    color: #94a3b8 !important;
+}
+div:where(.swal2-container) button:where(.swal2-close):hover {
+    color: #fff !important;
+}
+/* SweetAlert Backdrop */
+div:where(.swal2-container).swal2-backdrop-show {
+    background: rgba(0,0,0,0.6) !important;
+    backdrop-filter: blur(4px) !important;
+}
+body.swal2-toast-shown .swal2-container {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
