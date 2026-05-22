@@ -38,6 +38,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/profile', \App\Livewire\Pages\Profile::class)->name('profile');
     Route::get('/file-management', FileManagement::class)->name('file-management');
     Route::get('/email', EmailList::class)->name('email.list');
     Route::get('/send-email/{type?}/{id?}', SendEmail::class)->name('send-email');

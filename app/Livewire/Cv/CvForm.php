@@ -125,6 +125,14 @@ class CvForm extends Component
                 $this->languages = $cv->languages ?? [];
                 $this->assistance_experiences = $cv->assistance_experiences ?? [];
             }
+        } else {
+            $user = Auth::user();
+            if ($user) {
+                $this->full_name = $user->name ?? '';
+                $this->email = $user->email ?? '';
+                $this->phone = $user->phone_number ?? '';
+                $this->location = $user->city ?? '';
+            }
         }
     }
 

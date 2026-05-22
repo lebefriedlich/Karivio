@@ -190,6 +190,12 @@
                             <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">{{ __('Selamat Datang !') }}</h6>
 
                             <!-- item-->
+                            <a href="{{ route('profile') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                <i class="ri-account-circle-line text-lg align-middle"></i>
+                                <span>{{ __('Profil Saya') }}</span>
+                            </a>
+
+                            <!-- item-->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="flex w-full items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">

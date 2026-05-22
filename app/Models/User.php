@@ -24,6 +24,8 @@ use Illuminate\Support\Str;
     'google_refresh_token',
     'google_token_expires_at',
     'cover_letter_template',
+    'phone_number',
+    'city',
 ])]
 #[Hidden(['password', 'remember_token'])]
 #[WithoutIncrementing]

@@ -51,6 +51,14 @@ class CoverLetterForm extends Component
             $this->content = $this->coverLetter->content;
             $this->language = $this->coverLetter->language ?? 'id';
         } else {
+            $user = Auth::user();
+            if ($user) {
+                $this->full_name = $user->name ?? '';
+                $this->email = $user->email ?? '';
+                $this->phone = $user->phone_number ?? '';
+                $this->city = $user->city ?? '';
+            }
+            
             $this->content = $this->baseTemplate;
             $this->syncContent();
         }
