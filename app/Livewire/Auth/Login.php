@@ -17,24 +17,6 @@ class Login extends Component
 
     public bool $remember = true;
 
-    public function login(): void
-    {
-        $credentials = $this->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
-        ]);
-
-        if (! Auth::attempt($credentials, $this->remember)) {
-            $this->addError('email', 'Email atau password tidak valid.');
-
-            return;
-        }
-
-        session()->regenerate();
-
-        $this->redirectRoute('dashboard', navigate: true);
-    }
-
     public function render()
     {
         return view('livewire.auth.login');

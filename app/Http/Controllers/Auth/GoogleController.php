@@ -16,14 +16,14 @@ class GoogleController extends Controller
     {
         return Socialite::driver('google')
             ->scopes(['https://www.googleapis.com/auth/gmail.send', 'email', 'profile'])
-            ->with(['access_type' => 'offline', 'prompt' => 'consent select_account'])
+            ->with(['access_type' => 'offline'])
             ->redirect();
     }
 
     public function handleGoogleCallback()
     {
         try {
-            $user = Socialite::driver('google')->stateless()->user();
+            $user = Socialite::driver('google')->user();
             \Log::info('Google Login Attempt', ['email' => $user->email]);
         } catch (Exception $e) {
             \Log::error('Google Login Error', ['message' => $e->getMessage()]);
@@ -36,11 +36,14 @@ class GoogleController extends Controller
             'google_id' => $user->id,
             'avatar' => $user->avatar,
             'google_token' => $user->token,
-            'google_refresh_token' => $user->refreshToken,
             'google_token_expires_at' => is_numeric($user->expiresIn)
                 ? now()->addSeconds((int) $user->expiresIn)->format('Y-m-d H:i:s')
                 : now()->addHour()->format('Y-m-d H:i:s'),
         ];
+
+        if (!empty($user->refreshToken)) {
+            $userData['google_refresh_token'] = $user->refreshToken;
+        }
 
         $existingUser = User::where('google_id', $user->id)
             ->orWhere('email', $user->email)
