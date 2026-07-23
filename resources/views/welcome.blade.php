@@ -22,7 +22,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url('/') }}">
     <meta property="twitter:title" content="Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}">
-    <meta property="twitter:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda semua dalam satu platform elegan.') }}">
+    <meta property="twitter:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda—semua dalam satu platform elegan.') }}">
     <meta property="twitter:image" content="{{ asset('logo.svg') }}">
 
     <title>Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}</title>
