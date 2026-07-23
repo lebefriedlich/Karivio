@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Andaâ€”semua dalam satu platform elegan.') }}">
+    <meta name="description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda semua dalam satu platform elegan.') }}">
     <meta name="keywords" content="Karivio, CV Builder, Lamaran Kerja, Job Application, Cover Letter Generator, Gmail Integration, Auto Apply">
     <meta name="author" content="Karivio">
     <meta name="robots" content="index, follow">
@@ -15,14 +15,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}">
-    <meta property="og:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Andaâ€”semua dalam satu platform elegan.') }}">
+    <meta property="og:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda semua dalam satu platform elegan.') }}">
     <meta property="og:image" content="{{ asset('logo.svg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url('/') }}">
     <meta property="twitter:title" content="Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}">
-    <meta property="twitter:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Andaâ€”semua dalam satu platform elegan.') }}">
+    <meta property="twitter:description" content="{{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda semua dalam satu platform elegan.') }}">
     <meta property="twitter:image" content="{{ asset('logo.svg') }}">
 
     <title>Karivio - {{ __('Hub Lamaran Kerja Terbaik') }}</title>
@@ -182,7 +182,7 @@
                         </h1>
 
                         <p class="krv-hero-desc">
-                            {{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Andaâ€”semua dalam satu platform elegan.') }}
+                            {{ __('Buat CV profesional, buat surat lamaran kerja terpersonalisasi, serta pantau dan kirim lamaran kerja Anda secara langsung dari akun Gmail Anda semua dalam satu platform elegan.') }}
                         </p>
 
                         <div class="krv-hero-ctas">
